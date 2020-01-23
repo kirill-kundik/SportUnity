@@ -19,6 +19,7 @@
 		519009DEFD3FE7F27AFC3C04 /* libPods-Int20Music-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A7138A53564FC5798925F0 /* libPods-Int20Music-tvOS.a */; };
 		68DDDB0DBCFCF3D0DC1DBFE0 /* libPods-Int20Music-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2EAAC651E49356323315649 /* libPods-Int20Music-tvOSTests.a */; };
 		977F6A75D2171B311A23DFE3 /* libPods-Int20Music.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC320ADAC843447F5A75A8CF /* libPods-Int20Music.a */; };
+		9CB2119223DA1E23001C67F2 /* 👽.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB2119123DA1E23001C67F2 /* 👽.swift */; };
 		B4AD882174797893293A09CD /* libPods-Int20MusicTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62FA919E7E26B6F89CD36063 /* libPods-Int20MusicTests.a */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,8 @@
 		4195CF7F95A0D5A0EF551C35 /* Pods-Int20Music-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Int20Music-tvOS.release.xcconfig"; path = "Target Support Files/Pods-Int20Music-tvOS/Pods-Int20Music-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		62FA919E7E26B6F89CD36063 /* libPods-Int20MusicTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Int20MusicTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82D582AD4606B1F89A4C4C79 /* Pods-Int20Music-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Int20Music-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Int20Music-tvOSTests/Pods-Int20Music-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9CB2119023DA1E23001C67F2 /* Int20Music-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Int20Music-Bridging-Header.h"; sourceTree = "<group>"; };
+		9CB2119123DA1E23001C67F2 /* 👽.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "👽.swift"; sourceTree = "<group>"; };
 		A2EAAC651E49356323315649 /* libPods-Int20Music-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Int20Music-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC5CBDEA8861A535626C2DB3 /* Pods-Int20MusicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Int20MusicTests.release.xcconfig"; path = "Target Support Files/Pods-Int20MusicTests/Pods-Int20MusicTests.release.xcconfig"; sourceTree = "<group>"; };
 		C969D9B6E0D04F4D3A393357 /* Pods-Int20Music.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Int20Music.debug.xcconfig"; path = "Target Support Files/Pods-Int20Music/Pods-Int20Music.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				9CB2119123DA1E23001C67F2 /* 👽.swift */,
+				9CB2119023DA1E23001C67F2 /* Int20Music-Bridging-Header.h */,
 			);
 			name = Int20Music;
 			sourceTree = "<group>";
@@ -161,7 +166,6 @@
 				1E9E399CE5C1F9B67713D6F8 /* Pods-Int20MusicTests.debug.xcconfig */,
 				AC5CBDEA8861A535626C2DB3 /* Pods-Int20MusicTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -292,6 +296,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1120;
+					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -308,6 +315,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -528,6 +536,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CB2119223DA1E23001C67F2 /* 👽.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -582,6 +591,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E9E399CE5C1F9B67713D6F8 /* Pods-Int20MusicTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -605,6 +615,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AC5CBDEA8861A535626C2DB3 /* Pods-Int20MusicTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = Int20MusicTests/Info.plist;
@@ -626,6 +637,7 @@
 			baseConfigurationReference = C969D9B6E0D04F4D3A393357 /* Pods-Int20Music.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = Int20Music/Info.plist;
@@ -637,6 +649,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Int20Music;
+				SWIFT_OBJC_BRIDGING_HEADER = "Int20Music-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -646,6 +661,7 @@
 			baseConfigurationReference = F9F60EA7B7E588A4DE717532 /* Pods-Int20Music.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Int20Music/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -656,6 +672,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Int20Music;
+				SWIFT_OBJC_BRIDGING_HEADER = "Int20Music-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

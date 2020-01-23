@@ -4,5 +4,6 @@ module.exports = {
 	rules: {
 		semi: [2, 'never'],
 		'prettier/prettier': 0,
+		'@typescript-eslint/no-unused-vars': 'off',
 	},
 }

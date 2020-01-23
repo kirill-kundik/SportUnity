@@ -1,8 +1,7 @@
 export default {
-	main: '#ff185a',
-	background: '#EEEEEE',
+	main: 'rgba(25,61,255,0.84)',
+	mainGradientStart: '#1298FC',
+	mainGradientEnd: 'rgba(25,61,255,0.84)',
 
-	beautifulRed: '#FC4C4F',
-	beautifulGreen: '#1eba7b',
-	beautifulYellow: '#d9b457',
+	submit: '#47E5BC',
 }
