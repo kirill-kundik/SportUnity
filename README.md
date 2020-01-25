@@ -16,6 +16,11 @@ You have to have xCode & CocoaPods installed on your Mac.
 
 Android:
 
+Test APK is included in the root projected:
+
+
+Int20MusicFlashback.apk
+
 You have to have Android SDK & Java installed on your PC.
 - yarn install
 - yarn android
