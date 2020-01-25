@@ -1,6 +1,24 @@
-## Test application for Int20 hackathon.
+# Test application for Int20 hackathon.
 Powered by React Native & Flashback team *👽*
 
+## Description
+
+Music Akinator application for Int20 hackathon.
+
+The application has a game-like experience in which game lasts for 5 rounds.
+In each round uses thinks of a song & enters it's lyrics. Then the app tries to guess that song & provides Title, Name & In-app youtube preview.
+Then user says if it was guessed correctly. If yes - the app earns a point, otherwise - a user.
+After the 5th round, the app shows the result & resets it's state.
+  
+Video DEMO: https://www.youtube.com/watch?v=euXdtMLb2H8
+
+## Technical info 
+Uses https://api.audd.io/findLyrics api to find songs by fragments of their lyrics.
+Parsed name & title then used to find beautiful cover photo using https://api.deezer.com/search api.
+First API also provides youtube URL which is then previewed in the app (fullscreen mode only for Android). 
+  
+  
+## Launch instructions
 Recommended prerequisites:
 - Mac OS.
 - xCode.
