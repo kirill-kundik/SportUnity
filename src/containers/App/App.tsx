@@ -42,7 +42,7 @@ export default function App() {
 	const [userScore, setUserScore] = useState(0)
 	const [compScore, setCompScore] = useState(0)
 
-	const notFound = !guess || error
+	const notFound = !guess?.title || error
 	const onCloseNotFound = useCallback(() => {
 		setOpenedPopup(PopupNames.Input)
 	}, [setOpenedPopup])
@@ -120,6 +120,7 @@ export default function App() {
 						photoUrl={guess?.album?.cover_medium as string}
 						title={guess?.title as string}
 						artist={guess?.artist?.name as string}
+						youtubeUrl={guess?.youtubeUrl as string}
 						onCorrect={useCallback(() => {
 							setCompScore(compScore + 1)
 							setRoundNumber(roundNumber + 1)

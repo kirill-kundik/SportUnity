@@ -33,6 +33,8 @@ export default {
 			}))
 			.then((guess) => {
 
+				const youtubeUrl = guess?.media?.find(({ provider }) => provider === 'youtube')?.url
+
 				return fetch(`https://api.deezer.com/search?q=${guess.title} ${guess.artist}`, {
 					method: 'GET',
 					headers: {
@@ -41,20 +43,24 @@ export default {
 						'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
 					},
 				})
-			})
-			.then(res => res.json())
-			.then(res => res.data[0])
-			.then(res => {
-				return res as {
-					id: number,
-					album: {
-						cover_medium: string
-						cover_big: string,
-					}
-					artist: {
-						name: string,
-					}
-					title: string,
-				}
+					.then(res => res.json())
+					.then(res => res.data[0])
+					.then(res => {
+						return {
+							...res,
+							youtubeUrl,
+						} as {
+							id: number,
+							album: {
+								cover_medium: string
+								cover_big: string,
+							}
+							artist: {
+								name: string,
+							}
+							title: string,
+							youtubeUrl: string,
+						}
+					})
 			}),
 }

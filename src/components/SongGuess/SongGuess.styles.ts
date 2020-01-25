@@ -1,7 +1,10 @@
 import styled from 'styled-components/native'
+import Lottie from 'lottie-react-native'
 
 import Text from 'components/Text'
-import { colors } from '../../themes'
+import { colors } from 'themes'
+
+const YouTubeOriginal = require('react-native-youtube').default
 
 export const Container = styled.View`
 	display: flex;
@@ -10,13 +13,36 @@ export const Container = styled.View`
 	padding: 40px;
 `
 
-export const AlbumImage = styled.Image`
+export const AlbumButton = styled.TouchableOpacity.attrs({
+	activeOpacity: 0.8,
+})`
 	width: 300px;
 	height: 300px;
+	justify-content: center;
+	align-items: center;
+
 	border-width: 6px;
 	border-color: ${colors.submit};
 	margin-bottom: 20px;
 	border-radius: 40px;
+	overflow: hidden;
+`
+
+export const AlbumImage = styled.Image.attrs({
+	resizeMode: 'cover',
+})`
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 40px;
+`
+
+export const PlayLottie = styled(Lottie).attrs({
+	source: require('animations/1562-play-button.json'),
+	ref: ref => ref?.play(),
+})`
+	width: 160px;
+	height: 160px;
 `
 
 export const Title = styled(Text)`
@@ -58,4 +84,10 @@ export const WrongButton = styled(CorrectButton)`
 	background: ${colors.wrong};
 	margin-left: 15px;
 	margin-right: 0;
+`
+
+export const YouTube = styled(YouTubeOriginal)`
+	position: absolute;
+	width: 100%;
+	height: 100%;
 `
