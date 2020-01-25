@@ -9,6 +9,9 @@ The application has a game-like experience in which game lasts for 5 rounds.
 In each round uses thinks of a song & enters it's lyrics. Then the app tries to guess that song & provides Title, Name & In-app youtube preview.
 Then user says if it was guessed correctly. If yes - the app earns a point, otherwise - a user.
 After the 5th round, the app shows the result & resets it's state.
+
+In case an app can't find the song - the "Not Found 😢" message is showed for a couple of seconds,
+but any side gains the point
   
 Video DEMO: https://www.youtube.com/watch?v=euXdtMLb2H8
 
