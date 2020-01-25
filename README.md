@@ -11,7 +11,7 @@ Then user says if it was guessed correctly. If yes - the app earns a point, othe
 After the 5th round, the app shows the result & resets it's state.
 
 In case an app can't find the song - the "Not Found 😢" message is showed for a couple of seconds,
-but any side gains the point
+but no side actually gains the point & round is restarted.
   
 Video DEMO: https://www.youtube.com/watch?v=euXdtMLb2H8
 
