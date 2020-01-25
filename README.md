@@ -12,7 +12,9 @@ After the 5th round, the app shows the result & resets it's state.
 
 In case an app can't find the song - the "Not Found 😢" message is showed for a couple of seconds,
 but no side actually gains the point & round is restarted.
-  
+
+Suggested queries: hello, believer, moves like jagger, like.
+
 Video DEMO: https://www.youtube.com/watch?v=euXdtMLb2H8
 
 ## Technical info 
