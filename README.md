@@ -16,9 +16,13 @@ Video DEMO: https://www.youtube.com/watch?v=euXdtMLb2H8
 Uses https://api.audd.io/findLyrics api to find songs by fragments of their lyrics.
 Parsed name & title then used to find beautiful cover photo using https://api.deezer.com/search api.
 First API also provides youtube URL which is then previewed in the app (fullscreen mode only for Android). 
-  
-  
-## Launch instructions
+
+## Compiled apk
+
+Test APK is included in the root projected: 
+*Int20MusicFlashback.apk*
+ 
+## Launch instructions for debug mode
 Recommended prerequisites:
 - Mac OS.
 - xCode.
@@ -33,11 +37,6 @@ You have to have xCode & CocoaPods installed on your Mac.
 - yarn ios
 
 Android:
-
-Test APK is included in the root projected:
-
-
-Int20MusicFlashback.apk
 
 You have to have Android SDK & Java installed on your PC.
 - yarn install
