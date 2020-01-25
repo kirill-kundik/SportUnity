@@ -12,7 +12,7 @@ export const Container = styled.TouchableOpacity.attrs({
 `
 
 export const InputHolder = styled.KeyboardAvoidingView.attrs({
-	behavior: 'padding'
+	behavior: 'padding',
 })`
 	flex: 1;
 	justify-content: center;

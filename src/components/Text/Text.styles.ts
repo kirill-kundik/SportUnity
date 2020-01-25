@@ -1,5 +1,10 @@
 import styled from 'styled-components/native'
+import { Animated } from 'react-native'
 
-export const Text = styled.Text`
+export const SimpleText = styled.Text`
 	
+`
+
+export const AnimatedText = styled(Animated.Text)`
+
 `

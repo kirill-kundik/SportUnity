@@ -1,5 +1,5 @@
 import { TextInputProps } from 'react-native'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 
 import {
 	Container,
@@ -8,18 +8,33 @@ import {
 	SubmitText,
 } from './LyricsInput.styles'
 
+interface LyricsInputProps extends TextInputProps {
+	onSubmit: (text: string) => any,
+}
+
 export default function LyricsInput(
 	{
+		onSubmit,
 		style,
 		...props
-	}: TextInputProps,
+	}: LyricsInputProps,
 ) {
+	const [enteredText, setEnteredText] = useState('')
 
 	return (
 		<Container style={style}>
-			<TextInput {...props as any} />
+			<TextInput
+				onChangeText={useCallback((text) => {
+					setEnteredText(text)
+				}, [setEnteredText])}
+				{...props as any}
+			/>
 			<SubmitButton>
-				<SubmitText>
+				<SubmitText
+					onPress={useCallback(() => {
+						onSubmit(enteredText)
+					}, [onSubmit, enteredText])}
+				>
 					Submit
 				</SubmitText>
 			</SubmitButton>
