@@ -4,9 +4,8 @@ import Background from 'components/Background'
 import LyricsInput from 'components/LyricsInput'
 import StartButton from 'components/StartButton'
 import RoundNumber from 'components/RoundNumber'
+import SongGuess from 'components/SongGuess'
 import Popup from 'components/Popup/Popup'
-
-import { Alert, TextProps } from 'react-native'
 
 import {
 	Keyboard,
@@ -21,7 +20,7 @@ enum PopupNames {
 	StartButton,
 	RoundNumber,
 	TextInput,
-	VoiceInput,
+	SongGuess,
 	RoundResult,
 }
 
@@ -67,13 +66,30 @@ export default function App() {
 				>
 					<InputHolder>
 						<LyricsInput
+							key={openedPopup}
 							placeholder={'Type your lyrics...'}
 							onSubmit={useCallback((text) => {
-								setRoundNumber(roundNumber + 1)
-								setOpenedPopup(PopupNames.RoundNumber)
-							}, [setRoundNumber, roundNumber, setOpenedPopup])}
+								setOpenedPopup(PopupNames.SongGuess)
+							}, [setOpenedPopup])}
 						/>
 					</InputHolder>
+				</Popup>
+				<Popup
+					opened={openedPopup === PopupNames.SongGuess}
+				>
+					<SongGuess
+						photoUrl={'https://img.youtube.com/vi/ktvTqknDobU/0.jpg'}
+						title={'Radioactive'}
+						artist={'Imagine Dragons'}
+						onCorrect={useCallback(() => {
+							setRoundNumber(roundNumber + 1)
+							setOpenedPopup(PopupNames.RoundNumber)
+						}, [setRoundNumber, roundNumber, setOpenedPopup])}
+						onWrong={useCallback(() => {
+							setRoundNumber(roundNumber + 1)
+							setOpenedPopup(PopupNames.RoundNumber)
+						}, [setRoundNumber, roundNumber, setOpenedPopup])}
+					/>
 				</Popup>
 			</Container>
 		</>

@@ -1,4 +1,4 @@
-import { TextInputProps } from 'react-native'
+import { Keyboard, TextInputProps } from 'react-native'
 import React, { useCallback, useState } from 'react'
 
 import {
@@ -29,11 +29,13 @@ export default function LyricsInput(
 				}, [setEnteredText])}
 				{...props as any}
 			/>
-			<SubmitButton>
+			<SubmitButton
+				onPress={useCallback(() => {
+					Keyboard.dismiss()
+					onSubmit(enteredText)
+				}, [onSubmit, enteredText])}
+			>
 				<SubmitText
-					onPress={useCallback(() => {
-						onSubmit(enteredText)
-					}, [onSubmit, enteredText])}
 				>
 					Submit
 				</SubmitText>

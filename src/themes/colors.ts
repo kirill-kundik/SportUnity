@@ -4,4 +4,5 @@ export default {
 	mainGradientEnd: 'rgba(25,61,255,0.84)',
 
 	submit: '#47E5BC',
+	wrong: '#ff958e',
 }
