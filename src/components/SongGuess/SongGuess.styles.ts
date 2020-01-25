@@ -92,6 +92,6 @@ export const WrongButton = styled(CorrectButton)`
 
 export const YouTube = styled(YouTubeOriginal)`
 	position: absolute;
-	width: 100%;
-	height: 100%;
+	width: 401px;
+	height: 401px;
 `

@@ -26,6 +26,7 @@ export const SubmitText = styled(Text)`
 
 export const TextInput = styled(TextInputOriginal).attrs({
 	multiline: true,
+	autoFocus: false,
 })`
 	align-self: stretch;
 	border-radius: 14px;

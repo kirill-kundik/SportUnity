@@ -13,6 +13,7 @@ import {
 	ButtonsText,
 	YouTube,
 } from './SongGuess.styles'
+import { Platform, View } from 'react-native'
 
 interface SongGuessProps {
 	key?: any,
@@ -48,25 +49,40 @@ export default function SongGuess(
 					setVideoPlaying(!videoPlaying)
 				}, [videoPlaying])}
 			>
-				<AlbumImage
-					source={{ uri: photoUrl }}
-				/>
 				{
-					youtubeVideoId && <PlayLottie />
+					!videoPlaying && (
+						<>
+							<AlbumImage
+								source={{ uri: photoUrl }}
+							/>
+							{
+								youtubeVideoId && <PlayLottie />
+							}
+						</>
+					)
 				}
-				<YouTube
-					videoId={youtubeVideoId}
-					play={videoPlaying}
-					origin="http://www.youtube.com"
-					loop
+				{
+					videoPlaying && (
+						<YouTube
+							apiKey={'AIzaSyBypYq-aJh06BSKIDIPLNTTPENc1H6Ulpw'}
+							fullscreen={Platform.OS !== 'ios'}
+							videoId={youtubeVideoId}
+							play={videoPlaying}
+							origin="http://www.youtube.com"
+							loop
+							resumePlayAndroid={false}
+							onChangeFullscreen={(e: any) => {
+								if (!e.isFullscreen && videoPlaying) {
+									setVideoPlaying(false)
+								}
+							}}
 
-					// onReady={e => this.setState({ isReady: true })}
-					// onChangeState={e => this.setState({ status: e.state })}
-					// onChangeQuality={e => this.setState({ quality: e.quality })}
-					// onError={e => this.setState({ error: e.error })}
-
-					style={{ opacity: videoPlaying ? 1 : 0 }}
-				/>
+							// onReady={e => this.setState({ isReady: true })}
+							// onChangeQuality={e => this.setState({ quality: e.quality })}
+							// onError={e => this.setState({ error: e.error })}
+						/>
+					)
+				}
 			</AlbumButton>
 			<Title>
 				{title}

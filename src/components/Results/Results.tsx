@@ -28,7 +28,7 @@ export default function Results(
 	return (
 		<Container {...props}>
 			<WinnerText>
-				{userScore >= computerScore ? 'You win!' : 'Computer wins!'}
+				{userScore >= computerScore ? 'You win! ' : 'Computer wins! '}
 			</WinnerText>
 			<ScoreText>
 				{userScore} - {computerScore}

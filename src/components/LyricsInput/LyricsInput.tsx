@@ -31,7 +31,6 @@ export default function LyricsInput(
 			/>
 			<SubmitButton
 				onPress={useCallback(() => {
-					Keyboard.dismiss()
 					onSubmit(enteredText)
 				}, [onSubmit, enteredText])}
 			>

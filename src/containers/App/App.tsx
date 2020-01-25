@@ -38,7 +38,12 @@ export default function App() {
 
 	const keyboardOpened = useKeyboardOpened()
 	const [roundNumber, setRoundNumber] = useState(1)
-	const [openedPopup, setOpenedPopup] = useState(PopupNames.Start)
+	const [openedPopup, setOpenedPopupName] = useState(PopupNames.Start)
+	const setOpenedPopup = useCallback((name) => {
+		Keyboard.dismiss()
+		setOpenedPopupName(name)
+	}, [setOpenedPopupName])
+
 	const [guess, loading, error, fetchGuess] = useApi({
 		apiMethod: Api.findLyrics,
 		initialValue: undefined,

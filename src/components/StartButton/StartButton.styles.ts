@@ -11,6 +11,7 @@ const { width } = Dimensions.get('window')
 export const Container = styled.TouchableOpacity.attrs({
 	activeOpacity: 0.8,
 })`
+	padding: 100px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -23,7 +24,7 @@ export const LottieButton = styled(Lottie).attrs({
 	position: absolute;
 	width: ${width}px;
 	height: ${width}px;
-	transform: scale(2);
+	transform: scale(1.2);
 `
 
 export const StartText = styled(Text)`
