@@ -1,6 +1,8 @@
+const ApiUuddIoToken = 'be483ef9f00ef9aa1b1c20a6de328b23'
+
 export default {
 	findLyrics: (query: string) =>
-		fetch(`https://api.audd.io/findLyrics/?api_token=6a95137ceea9b9b962df14ade64f7d12&q=${query}`, {
+		fetch(`https://api.audd.io/findLyrics/?api_token=${ApiUuddIoToken}&q=${query}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -32,8 +34,8 @@ export default {
 				title_with_featured: string,
 			}))
 			.then((guess) => {
-
 				const youtubeUrl = guess?.media?.find(({ provider }) => provider === 'youtube')?.url
+				const youtubeId = youtubeUrl?.match(/.+v=(.+)$/)?.[1]
 
 				return fetch(`https://api.deezer.com/search?q=${guess.title} ${guess.artist}`, {
 					method: 'GET',
@@ -62,5 +64,17 @@ export default {
 							youtubeUrl: string,
 						}
 					})
+					.catch(() => ({
+						...guess,
+						album: {
+							cover_medium: youtubeId
+								? `https://img.youtube.com/vi/${youtubeId}/0.jpg`
+								: 'https://znaiwifi.com/wp-content/uploads/2018/01/hqdefault.jpg',
+						},
+						artist: {
+							name: guess.artist,
+						},
+						youtubeUrl,
+					}))
 			}),
 }
