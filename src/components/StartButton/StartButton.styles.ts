@@ -4,6 +4,10 @@ import Lottie from 'lottie-react-native'
 import Text from 'components/Text'
 import { colors } from 'themes'
 
+import { Dimensions } from 'react-native'
+
+const { width } = Dimensions.get('window')
+
 export const Container = styled.TouchableOpacity.attrs({
 	activeOpacity: 0.8,
 })`
@@ -17,8 +21,9 @@ export const LottieButton = styled(Lottie).attrs({
 	ref: ref => ref?.play(),
 })`
 	position: absolute;
-	width: 400px;
-	height: 400px;
+	width: ${width}px;
+	height: ${width}px;
+	transform: scale(2);
 `
 
 export const StartText = styled(Text)`

@@ -7,7 +7,13 @@ export default function useKeyboardOpened() {
 		Keyboard.addListener('keyboardWillShow', () => {
 			setOpened(true)
 		})
+		Keyboard.addListener('keyboardDidShow', () => {
+			setOpened(true)
+		})
 		Keyboard.addListener('keyboardWillHide', () => {
+			setOpened(false)
+		})
+		Keyboard.addListener('keyboardDidHide', () => {
 			setOpened(false)
 		})
 		return () => Keyboard.removeAllListeners()
