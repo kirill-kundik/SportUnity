@@ -1,5 +1,8 @@
 import styled from 'styled-components/native'
 import Lottie from 'lottie-react-native'
+import { Dimensions } from 'react-native'
+
+const { width: windowWidth } = Dimensions.get('window')
 
 import Text from 'components/Text'
 import { colors } from 'themes'
@@ -16,8 +19,9 @@ export const Container = styled.View`
 export const AlbumButton = styled.TouchableOpacity.attrs({
 	activeOpacity: 0.8,
 })`
-	width: 300px;
-	height: 300px;
+	align-self: stretch;
+	height: ${windowWidth - 80}px;
+	
 	justify-content: center;
 	align-items: center;
 

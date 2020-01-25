@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react'
 
 import Background from 'components/Background'
+import Popup from 'components/Popup/Popup'
+
 import LyricsInput from 'components/LyricsInput'
 import StartButton from 'components/StartButton'
 import RoundNumber from 'components/RoundNumber'
@@ -8,7 +10,7 @@ import SongGuess from 'components/SongGuess'
 import ScoreBoard from 'components/ScoreBoard'
 import Loading from 'components/Loading'
 import NotFound from 'components/NotFound'
-import Popup from 'components/Popup/Popup'
+import RoundResults from 'components/Results'
 
 import Api from 'api'
 
@@ -22,11 +24,14 @@ import {
 } from './App.styles'
 import { useApi, useKeyboardOpened } from 'utils'
 
+const ROUNDS_COUNT = 5
+
 export enum PopupNames {
 	Start,
 	Round,
 	Input,
 	Guess,
+	Results
 }
 
 export default function App() {
@@ -46,6 +51,12 @@ export default function App() {
 	const onCloseNotFound = useCallback(() => {
 		setOpenedPopup(PopupNames.Input)
 	}, [setOpenedPopup])
+	const onCloseResults = useCallback(() => {
+		setRoundNumber(1)
+		setUserScore(0)
+		setCompScore(0)
+		setOpenedPopup(PopupNames.Start)
+	}, [setRoundNumber, setUserScore, setCompScore, setOpenedPopup])
 
 	return (
 		<>
@@ -102,7 +113,7 @@ export default function App() {
 					<InputHolder>
 						<LyricsInput
 							key={openedPopup}
-							placeholder={'Type your lyrics...'}
+							placeholder={'Moves like jagger..'}
 							onSubmit={useCallback((text) => {
 								setOpenedPopup(PopupNames.Guess)
 								fetchGuess(text)
@@ -123,13 +134,21 @@ export default function App() {
 						youtubeUrl={guess?.youtubeUrl as string}
 						onCorrect={useCallback(() => {
 							setCompScore(compScore + 1)
-							setRoundNumber(roundNumber + 1)
-							setOpenedPopup(PopupNames.Round)
+							if (roundNumber >= ROUNDS_COUNT) {
+								setOpenedPopup(PopupNames.Results)
+							} else {
+								setRoundNumber(roundNumber + 1)
+								setOpenedPopup(PopupNames.Round)
+							}
 						}, [setCompScore, compScore, setRoundNumber, roundNumber, setOpenedPopup])}
 						onWrong={useCallback(() => {
 							setUserScore(userScore + 1)
-							setRoundNumber(roundNumber + 1)
-							setOpenedPopup(PopupNames.Round)
+							if (roundNumber >= ROUNDS_COUNT) {
+								setOpenedPopup(PopupNames.Results)
+							} else {
+								setRoundNumber(roundNumber + 1)
+								setOpenedPopup(PopupNames.Round)
+							}
 						}, [setUserScore, userScore, setRoundNumber, roundNumber, setOpenedPopup])}
 					/>
 				</Popup>
@@ -143,6 +162,21 @@ export default function App() {
 							<NotFound
 								key={guess as any}
 								onClose={onCloseNotFound}
+							/>
+						)
+					}
+				</Popup>
+				<Popup
+					opened={
+						openedPopup === PopupNames.Results
+					}
+				>
+					{
+						openedPopup === PopupNames.Results && (
+							<RoundResults
+								onClose={onCloseResults}
+								computerScore={compScore}
+								userScore={userScore}
 							/>
 						)
 					}
