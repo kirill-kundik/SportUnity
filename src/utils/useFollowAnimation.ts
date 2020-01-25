@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { Animated } from 'react-native'
 
 interface CreateAnimConfig {
@@ -32,9 +32,8 @@ export default function useFollowAnimation(config: CreateAnimConfig = {}) {
 	useEffect(() => {
 		const animation = Animated.spring(current, {
 			toValue: goal,
-			useNativeDriver: true,
 			isInteraction: false,
-			overshootClamping: true,
+			useNativeDriver: true,
 			...config,
 		})
 		animation.start()

@@ -1,13 +1,9 @@
-import React, { useMemo, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
-import {
-	Animated,
-} from 'react-native'
-
+import { useFollowAnimation } from 'utils'
 import {
 	Container,
 } from './Popup.styles'
-import { useFollowAnimation } from '../../utils'
 
 interface PopupProps {
 	opened: boolean,
@@ -29,10 +25,15 @@ export default function Popup(
 
 	return (
 		<Container
+			pointerEvents={opened ? 'box-none' : 'none'}
 			style={[
 				{
+					opacity: current,
 					transform: [{
-						scale: current,
+						scale: current.interpolate({
+							inputRange: [0, 1],
+							outputRange: [0.8, 1],
+						}),
 					}],
 				},
 				props.style,

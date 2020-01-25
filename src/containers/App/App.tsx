@@ -5,6 +5,7 @@ import LyricsInput from 'components/LyricsInput'
 import StartButton from 'components/StartButton'
 import RoundNumber from 'components/RoundNumber'
 import SongGuess from 'components/SongGuess'
+import ScoreBoard from 'components/ScoreBoard'
 import Popup from 'components/Popup/Popup'
 
 import {
@@ -15,6 +16,7 @@ import {
 	Container,
 	InputHolder,
 } from './App.styles'
+import { useKeyboardOpened } from 'utils'
 
 enum PopupNames {
 	StartButton,
@@ -26,6 +28,7 @@ enum PopupNames {
 
 export default function App() {
 
+	const keyboardOpened = useKeyboardOpened()
 	const [roundNumber, setRoundNumber] = useState(1)
 	const [openedPopup, setOpenedPopup] = useState(PopupNames.StartButton)
 
@@ -38,6 +41,19 @@ export default function App() {
 				onPress={Keyboard.dismiss}
 			>
 				<Background />
+				<Popup
+					opened={
+						(
+							openedPopup === PopupNames.TextInput ||
+							openedPopup === PopupNames.RoundResult
+						) && !keyboardOpened
+					}
+				>
+					<ScoreBoard
+						userScore={2}
+						computerScore={3}
+					/>
+				</Popup>
 				<Popup
 					opened={openedPopup === PopupNames.StartButton}
 				>
