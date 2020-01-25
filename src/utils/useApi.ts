@@ -31,6 +31,7 @@ export default function useApi<Req, Res>(
 		try {
 			const res = await apiMethod(props)
 			onSuccess && onSuccess(res)
+			setError(null)
 			setRes(res)
 		} catch (err) {
 			onError && onError(err)

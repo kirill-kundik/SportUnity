@@ -6015,6 +6015,11 @@ rimraf@~2.2.6:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
   integrity sha1-5Dm+Kq7jJzIZUnMPmaiSnk/FBYI=
 
+rn-deezer-sdk@^1.0.18:
+  version "1.0.18"
+  resolved "https://registry.yarnpkg.com/rn-deezer-sdk/-/rn-deezer-sdk-1.0.18.tgz#1cf2290cf2fd2ae818b874a433c6cf608f5f472e"
+  integrity sha512-hEwTkbJhw8VTF1K0YzbOyGWdNWZlWPOFifHT5IHXGOEOOswOaOegGv/Or5Uey/e/lcJX+Gfbkt0kOghAB3qsGg==
+
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"

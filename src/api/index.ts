@@ -48,6 +48,7 @@ export default {
 				return res as {
 					id: number,
 					album: {
+						cover_medium: string
 						cover_big: string,
 					}
 					artist: {

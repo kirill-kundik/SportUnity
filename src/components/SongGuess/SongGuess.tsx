@@ -12,6 +12,7 @@ import {
 } from './SongGuess.styles'
 
 interface SongGuessProps {
+	key?: any,
 	photoUrl: string,
 	title: string,
 	artist: string,
@@ -27,10 +28,11 @@ export default function SongGuess(
 		artist,
 		onCorrect,
 		onWrong,
+		...props
 	}: SongGuessProps,
 ) {
 	return (
-		<Container>
+		<Container {...props}>
 			<AlbumImage
 				source={{ uri: photoUrl }}
 				resizeMode={'cover'}
