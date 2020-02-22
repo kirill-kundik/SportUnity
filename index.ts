@@ -1,9 +1,9 @@
-/**
- * @format
- */
-
+import { createAppContainer } from 'react-navigation'
 import { AppRegistry } from 'react-native'
-import App from 'containers/App'
-import { name as appName } from './app.json'
 
-AppRegistry.registerComponent(appName, () => App)
+import { name as appName } from './app.json'
+import Navigation from 'containers/Navigation'
+
+const AppWithNavigation = createAppContainer(Navigation)
+
+AppRegistry.registerComponent(appName, () => AppWithNavigation)
