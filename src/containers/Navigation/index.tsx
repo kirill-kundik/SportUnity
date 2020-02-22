@@ -46,7 +46,7 @@ export default createStackNavigator(
 						return <MaterialCommunityIcons name={'account-circle-outline'} size={32} color={tintColor} />
 					},
 				}),
-				order: ['Feed', 'Activities', 'Map', 'Search', 'Profile'],
+				order: ['Feed', 'Search', 'Map', 'Activities', 'Profile'],
 			},
 		),
 		ActivityDetails: ActivityDetailsTab,
