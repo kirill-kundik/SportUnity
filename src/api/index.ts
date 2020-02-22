@@ -4,7 +4,7 @@ import autoBind from 'auto-bind'
 class Api {
 	baseUrl: string
 
-	constructor(baseUrl: string = 'http://localhost:26005') {
+	constructor(baseUrl: string = 'http://192.168.32.216:26005') {
 		this.baseUrl = baseUrl
 		autoBind(this)
 	}

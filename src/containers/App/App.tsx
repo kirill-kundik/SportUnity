@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-import { useActionApi } from 'utils'
+import { useActionApi, useBackgroundTracker } from 'hooks'
 import Api from 'api'
 
 import Background from 'components/Background'
@@ -20,12 +20,10 @@ export default function App() {
 		apiMethod: Api.trackGeo,
 	})
 
-	useEffect(() => {
-		trackGeo({
-			lat: 30.4,
-			lng: 50.2,
-		})
-	}, [trackGeo])
+	const [startLocationTracking, endLocationTracking] = useBackgroundTracker({
+		userId: 123,
+		baseUrl: Api.baseUrl,
+	})
 
 	return (
 		<>

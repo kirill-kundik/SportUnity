@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { useFollowAnimation } from 'utils'
+import { useFollowAnimation } from 'hooks'
 import {
 	Container,
 } from './Popup.styles'
