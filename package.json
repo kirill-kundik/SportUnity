@@ -10,7 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.6",
+    "@types/google-map-react": "^1.1.5",
     "@types/react-native-linear-gradient": "^2.4.0",
+    "@types/react-native-vector-icons": "^6.4.5",
     "@types/styled-components": "^4.4.2",
     "babel-plugin-styled-components": "^1.10.6",
     "frisbee": "^3.1.2",
@@ -18,8 +21,17 @@
     "lottie-react-native": "^3.3.2",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-gesture-handler": "^1.6.0",
     "react-native-linear-gradient": "^2.5.6",
+    "react-native-maps": "0.26.1",
+    "react-native-reanimated": "^1.7.0",
+    "react-native-safe-area-context": "^0.7.3",
+    "react-native-screens": "^2.0.0-beta.10",
+    "react-native-vector-icons": "^6.6.0",
     "react-native-youtube": "^2.0.0",
+    "react-navigation": "^4.1.1",
+    "react-navigation-stack": "^2.1.1",
+    "react-navigation-tabs": "latest",
     "rn-deezer-sdk": "^1.0.18",
     "styled-components": "^5.0.0",
     "typescript": "^3.7.5"
