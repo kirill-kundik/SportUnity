@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, {useCallback, useState} from 'react'
 
 import Background from 'components/Background'
 import Popup from 'components/Popup/Popup'
@@ -11,6 +11,7 @@ import ScoreBoard from 'components/ScoreBoard'
 import Loading from 'components/Loading'
 import NotFound from 'components/NotFound'
 import RoundResults from 'components/Results'
+import Navigation from 'containers/Navigation'
 
 import Api from 'api'
 
@@ -22,7 +23,8 @@ import {
 	Container,
 	InputHolder,
 } from './App.styles'
-import { useApi, useKeyboardOpened } from 'utils'
+import {useApi, useKeyboardOpened} from 'utils'
+import {createAppContainer} from 'react-navigation'
 
 const ROUNDS_COUNT = 5
 
@@ -71,121 +73,9 @@ export default function App() {
 			<Container
 				onPress={Keyboard.dismiss}
 			>
+				<Navigation />
+
 				<Background />
-				<Popup
-					opened={loading}
-				>
-					<Loading />
-				</Popup>
-				<Popup
-					opened={
-						(
-							openedPopup === PopupNames.Input
-						) && !keyboardOpened && !loading
-					}
-				>
-					<ScoreBoard
-						userScore={userScore}
-						computerScore={compScore}
-					/>
-				</Popup>
-				<Popup
-					opened={openedPopup === PopupNames.Start}
-				>
-					<StartButton
-						onPress={useCallback(() => {
-							setOpenedPopup(PopupNames.Round)
-						}, [setOpenedPopup])}
-					/>
-				</Popup>
-				<Popup
-					opened={openedPopup === PopupNames.Round}
-				>
-					{
-						openedPopup === PopupNames.Round && (
-							<RoundNumber
-								roundNumber={roundNumber}
-								onClose={() => {
-									setOpenedPopup(PopupNames.Input)
-								}}
-							/>
-						)
-					}
-				</Popup>
-				<Popup
-					opened={openedPopup === PopupNames.Input && !loading}
-				>
-					<InputHolder>
-						<LyricsInput
-							key={openedPopup}
-							placeholder={'Moves like jagger..'}
-							onSubmit={useCallback((text) => {
-								setOpenedPopup(PopupNames.Guess)
-								fetchGuess(text)
-							}, [setOpenedPopup, fetchGuess])}
-						/>
-					</InputHolder>
-				</Popup>
-				<Popup
-					opened={
-						openedPopup === PopupNames.Guess && !loading && !notFound
-					}
-				>
-					<SongGuess
-						key={guess as any}
-						photoUrl={guess?.album?.cover_medium as string}
-						title={guess?.title as string}
-						artist={guess?.artist?.name as string}
-						youtubeUrl={guess?.youtubeUrl as string}
-						onCorrect={useCallback(() => {
-							setCompScore(compScore + 1)
-							if (roundNumber >= ROUNDS_COUNT) {
-								setOpenedPopup(PopupNames.Results)
-							} else {
-								setRoundNumber(roundNumber + 1)
-								setOpenedPopup(PopupNames.Round)
-							}
-						}, [setCompScore, compScore, setRoundNumber, roundNumber, setOpenedPopup])}
-						onWrong={useCallback(() => {
-							setUserScore(userScore + 1)
-							if (roundNumber >= ROUNDS_COUNT) {
-								setOpenedPopup(PopupNames.Results)
-							} else {
-								setRoundNumber(roundNumber + 1)
-								setOpenedPopup(PopupNames.Round)
-							}
-						}, [setUserScore, userScore, setRoundNumber, roundNumber, setOpenedPopup])}
-					/>
-				</Popup>
-				<Popup
-					opened={
-						openedPopup === PopupNames.Guess && !loading && notFound
-					}
-				>
-					{
-						openedPopup === PopupNames.Guess && !loading && notFound && (
-							<NotFound
-								key={guess as any}
-								onClose={onCloseNotFound}
-							/>
-						)
-					}
-				</Popup>
-				<Popup
-					opened={
-						openedPopup === PopupNames.Results
-					}
-				>
-					{
-						openedPopup === PopupNames.Results && (
-							<RoundResults
-								onClose={onCloseResults}
-								computerScore={compScore}
-								userScore={userScore}
-							/>
-						)
-					}
-				</Popup>
 			</Container>
 		</>
 	)

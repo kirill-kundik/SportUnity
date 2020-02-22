@@ -3,22 +3,10 @@
  */
 
 import { AppRegistry } from 'react-native'
-import App from 'containers/App'
+import Navigation from 'containers/Navigation'
 import { name as appName } from './app.json'
+import { createAppContainer } from 'react-navigation'
 
-// XMLHttpRequest = global.originalXMLHttpRequest
-// 	? global.originalXMLHttpRequest
-// 	: global.XMLHttpRequest
-//
-// global.FormData = global.originalFormData
-// 	? global.originalFormData
-// 	: global.FormData
-//
-// fetch // Ensure to get the lazy property
-//
-// // RNDebugger only
-// if (window.__FETCH_SUPPORT__) {
-// 	window.__FETCH_SUPPORT__.blob = false
-// }
+const AppWithNavigation = createAppContainer(Navigation)
 
-AppRegistry.registerComponent(appName, () => App)
+AppRegistry.registerComponent(appName, () => AppWithNavigation)
