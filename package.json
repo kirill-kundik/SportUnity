@@ -10,8 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@mauron85/react-native-background-geolocation": "^0.6.3",
+    "@types/auto-bind": "^2.1.0",
     "@types/react-native-linear-gradient": "^2.4.0",
     "@types/styled-components": "^4.4.2",
+    "auto-bind": "^4.0.0",
     "babel-plugin-styled-components": "^1.10.6",
     "frisbee": "^3.1.2",
     "lottie-ios": "^3.1.5",
