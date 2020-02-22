@@ -16,5 +16,12 @@ export interface User {
 	description: string,
 	image_url: string,
 	types: Array<Type>
-	activitiesCount: number
+	activities_count: number
+}
+
+export interface RecentUserActivity {
+	user_id: number,
+	color: string,
+	image_url: string,
+	locations: Array<Geo>
 }

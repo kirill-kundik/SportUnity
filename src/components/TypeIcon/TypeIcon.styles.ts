@@ -16,6 +16,7 @@ export const Icon = styled.Image.attrs({
 	width: 80px;
 	height: 80px;
 	border-radius: 20px;
+	background: white;
 `
 
 export const TypeText = styled(Text)`

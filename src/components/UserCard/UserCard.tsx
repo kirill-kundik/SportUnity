@@ -47,7 +47,7 @@ export default function UserCard(
 						</SimpleText>
 						<ActivitiesCountHolder>
 							<ActivitiesText>
-								{user.activitiesCount}
+								{user.activities_count}
 							</ActivitiesText>
 						</ActivitiesCountHolder>
 					</UserFieldRow>
