@@ -1,6 +1,10 @@
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 import React, { useEffect } from 'react'
 
+
 import { useActionApi, useBackgroundTracker } from 'hooks'
+import createStore from 'reduxStore'
 import Api from 'api'
 
 import Background from 'components/Background'
@@ -14,11 +18,10 @@ import {
 	Container,
 } from './App.styles'
 
-export default function App() {
 
-	const [trackLoading, trackError, trackGeo] = useActionApi({
-		apiMethod: Api.trackGeo,
-	})
+const { store, persistor } = createStore()
+
+export default function App() {
 
 	const [startLocationTracking, endLocationTracking] = useBackgroundTracker({
 		userId: 123,
@@ -26,21 +29,15 @@ export default function App() {
 	})
 
 	return (
-		<>
-			<StatusBar
-				barStyle={'light-content'}
-			/>
-			<Container>
-				<Background />
-				<Popup
-					opened={trackLoading}
-				>
-					<Loading />
-				</Popup>
-				<Text>
-					{trackError && JSON.stringify(trackError)}
-				</Text>
-			</Container>
-		</>
+		<Provider store={store}>
+			<PersistGate loading={null} persistor={persistor}>
+				<StatusBar
+					barStyle={'light-content'}
+				/>
+				<Container>
+					<Background />
+				</Container>
+			</PersistGate>
+		</Provider>
 	)
 }
