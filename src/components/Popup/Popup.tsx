@@ -25,16 +25,10 @@ export default function Popup(
 
 	return (
 		<Container
-			pointerEvents={opened ? 'box-none' : 'none'}
+			pointerEvents={opened ? 'auto' : 'none'}
 			style={[
 				{
 					opacity: current,
-					transform: [{
-						scale: current.interpolate({
-							inputRange: [0, 1],
-							outputRange: [0.8, 1],
-						}),
-					}],
 				},
 				props.style,
 			]}

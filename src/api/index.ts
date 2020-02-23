@@ -4,7 +4,7 @@ import autoBind from 'auto-bind'
 class Api {
 	baseUrl: string
 
-	constructor(baseUrl: string = 'http://192.168.32.216:26005') {
+	constructor(baseUrl: string = 'http://192.168.33.209:8088') {
 		this.baseUrl = baseUrl
 		autoBind(this)
 	}
@@ -35,8 +35,22 @@ class Api {
 		})
 	}
 
-	trackGeo(geo: Geo) {
-		return this.post('/track_geo', geo)
+	private get(url: string) {
+		return this.request(url, {
+			method: 'GET',
+		})
+	}
+
+	getTypeList() {
+		return this.get('/getTypeList')
+	}
+
+	getUser(id: number) {
+		return this.get(`/user/${id}`)
+			.then(user => ({
+				activities_count: Math.round(Math.random() * 10),
+				...user,
+			}))
 	}
 }
 

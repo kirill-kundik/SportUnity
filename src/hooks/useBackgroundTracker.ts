@@ -3,14 +3,14 @@ import { useEffect } from 'react'
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation'
 
 interface BackgroundTrackerProps {
-	baseUrl: string,
+	trackUrl: string,
 	userId: number
 }
 
 export default function useBackgroundTracker(
 	{
 		userId,
-		baseUrl,
+		trackUrl,
 	}: BackgroundTrackerProps,
 ) {
 
@@ -29,7 +29,7 @@ export default function useBackgroundTracker(
 			fastestInterval: 5000,
 			activitiesInterval: 5000,
 
-			url: `${baseUrl}/track_geo`,
+			url: trackUrl,
 			syncThreshold: '10',
 			postTemplate: {
 				lat: '@latitude',
@@ -47,7 +47,7 @@ export default function useBackgroundTracker(
 
 			notificationsEnabled: false,
 		})
-	}, [userId, baseUrl])
+	}, [userId, trackUrl])
 
 	return [BackgroundGeolocation.start, BackgroundGeolocation.stop]
 }

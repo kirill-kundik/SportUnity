@@ -15,6 +15,7 @@ export const SimpleText = styled(Text)`
 
 export const UserIdPicker = styled.Picker`
 	width: 100px;
+	margin-left: 30px;
 `
 
 export const UserIdPickerItem = styled(Picker.Item)`

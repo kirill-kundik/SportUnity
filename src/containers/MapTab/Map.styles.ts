@@ -1,6 +1,5 @@
 import styled from 'styled-components/native'
 import MapView from 'react-native-maps'
-import { Picker } from 'react-native'
 
 import Text from 'components/Text'
 import { CustomPicker } from 'react-native-custom-picker'

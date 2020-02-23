@@ -70,7 +70,7 @@ export default function UserCard(
 				{
 					user
 						.types
-						.map(type => (
+						?.map(type => (
 							<TypeIcon
 								key={type.id}
 								type={type}
