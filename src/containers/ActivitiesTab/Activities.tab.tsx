@@ -1,14 +1,14 @@
 import React from 'react'
 import ActivityCard from 'components/ActivityCard'
-import {Container} from './Activities.styles'
-import {RefreshControl, ScrollView} from 'react-native'
-import {useApi} from 'utils'
+import { Container } from './Activities.styles'
+import { RefreshControl, ScrollView } from 'react-native'
+import { useApi } from 'hooks'
 import Api from 'api'
-import {activities} from './'
+import { activities } from './'
 
 export default function ActivitiesTab() {
 	const [data, loading, error, fetchData] = useApi({
-		apiMethod: Api.findLyrics,
+		apiMethod: async () => [],
 		initialValue: activities,
 	})
 
@@ -16,12 +16,14 @@ export default function ActivitiesTab() {
 		refreshControl={
 			<RefreshControl
 				refreshing={loading}
-				onRefresh={fetchData}
+				onRefresh={() => {
+					fetchData({})
+				}}
 			/>
 		}>
 		<Container>
 			{
-				data.map(a =>
+				data.map((a: any) =>
 					<ActivityCard
 						key={a.id}
 						activity={a}

@@ -1,16 +1,16 @@
 import React from 'react'
 
-import {RefreshControl, ScrollView} from 'react-native'
-import {Container} from './Feed.styles'
-import {useApi} from 'utils'
+import { RefreshControl, ScrollView } from 'react-native'
+import { Container } from './Feed.styles'
+import { useApi } from 'hooks'
 import Api from 'api'
 import ActivityCard from 'components/ActivityCard/ActivityCard.component'
-import {activities} from 'containers/ActivitiesTab'
+import { activities } from 'containers/ActivitiesTab'
 
 export default function FeedTab(props: any) {
 
 	const [data, loading, error, fetchData] = useApi({
-		apiMethod: Api.findLyrics,
+		apiMethod: async () => [],
 		initialValue: activities,
 	})
 
@@ -18,7 +18,9 @@ export default function FeedTab(props: any) {
 		refreshControl={
 			<RefreshControl
 				refreshing={loading}
-				onRefresh={fetchData}
+				onRefresh={() => {
+					fetchData({})
+				}}
 			/>
 		}>
 		<Container>
