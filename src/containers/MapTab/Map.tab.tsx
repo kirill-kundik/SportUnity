@@ -6,7 +6,7 @@ import { usePersistedApi, useActionApi, usePersistedState, useBackgroundTracker,
 import constants from 'constants'
 import Api from 'api'
 
-import { Geo, RecentUserActivity } from 'entities'
+import { Geo, RecentUserActivity, Type } from 'entities'
 import TypeIcon from 'components/TypeIcon'
 import Loading from 'components/Loading'
 import Popup from 'components/Popup'
@@ -25,7 +25,7 @@ import {
 
 export default function MapTab() {
 
-	const [selectedType, setSelectedType] = useState()
+	const [selectedType, setSelectedType] = useState<Type>()
 	const userId = usePersistedState({
 		entityName: constants.userId,
 		initialValue: 1,
@@ -112,7 +112,7 @@ export default function MapTab() {
 							.map((userActivity: RecentUserActivity) => (
 								<Polyline
 									key={userActivity.user_id}
-									coordinates={userActivity.locations.map(mapCoordinate)}
+									coordinates={userActivity.locations.map(mapCoordinate).filter(a => !!a)}
 									strokeColor={userActivity.color}
 								/>
 							))
@@ -121,9 +121,10 @@ export default function MapTab() {
 						nearby
 							.map((userActivity: RecentUserActivity) => {
 								const lastLocation = last(userActivity.locations)
+								const coordinate = mapCoordinate(lastLocation as any)
 
 								return (
-									<Marker
+									!!coordinate && <Marker
 										key={userActivity.user_id}
 										coordinate={mapCoordinate(lastLocation as any)}
 										title={`User ${userActivity.user_id}`}
@@ -162,7 +163,7 @@ export default function MapTab() {
 								startTracking(
 									{
 										userId,
-										type: selectedType,
+										type: selectedType as Type,
 									},
 								)
 							} else {
@@ -188,8 +189,9 @@ export default function MapTab() {
 }
 
 function mapCoordinate(geo: Geo) {
-	return ({
-		latitude: +geo?.lat,
-		longitude: +geo?.lon,
-	})
+	return (geo?.lat && geo?.lon) ?
+		({
+			latitude: +geo?.lat,
+			longitude: +geo?.lon,
+		}) : null as any
 }
