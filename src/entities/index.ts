@@ -1,5 +1,5 @@
 export interface Geo {
-	lng: number,
+	lon: number,
 	lat: number
 }
 

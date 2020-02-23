@@ -34,8 +34,12 @@ export const ControlRow = styled.View`
 	align-items: center;
 `
 
-export const StartTrackButton = styled.TouchableOpacity`
-	background: forestgreen;
+interface StartTrackButton {
+	isStop: boolean
+}
+
+export const StartTrackButton = styled.TouchableOpacity<StartTrackButton>`
+	background: ${(({ isStop }) => isStop ? 'red' : 'forestgreen')};
 	padding: 18px 40px;
 	border-radius: 22px;
 `

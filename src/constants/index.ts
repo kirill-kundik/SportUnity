@@ -3,4 +3,6 @@ export default {
 	user: 'user',
 	activities: 'activities',
 	feed: 'feed',
+	types: 'types',
+	isTracking: 'isTracking',
 }

@@ -20,5 +20,6 @@ export const Icon = styled.Image.attrs({
 `
 
 export const TypeText = styled(Text)`
+	margin-top: 5px;
 	font-size: 16px;
 `
