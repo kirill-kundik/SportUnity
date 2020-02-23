@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { usePersistedState, usePersistedApi } from 'hooks'
 import { User } from 'entities'
@@ -26,11 +26,11 @@ export default function ProfileTab() {
 	const [user, userLoading, userError, fetchUser] = usePersistedApi({
 		apiMethod: Api.getUser,
 		entityName: constants.user,
-		initialValue: {},
+		initialValue: {} as User,
 	})
 
 	useEffect(() => {
-		fetchUser(selectedUserId)
+		fetchUser(selectedUserId as number)
 	}, [fetchUser, selectedUserId])
 
 	// const userMock: User = {

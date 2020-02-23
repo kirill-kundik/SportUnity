@@ -11,6 +11,7 @@ export const Container = styled.ScrollView.attrs({
 		padding: 20,
 	},
 })`
+	flex: 1;
 `
 
 export const SubmitButton = styled.TouchableOpacity.attrs({
@@ -40,4 +41,16 @@ export const TextInput = styled(TextInputOriginal).attrs({
 	margin: 0 50px;
 	padding: 15px;
 	font-size: 16px;
+`
+
+export const ContentBlock = styled.TouchableOpacity`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	
+	margin-top: 20px;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 5px 10px rgba(163,163,163,0.5);
 `

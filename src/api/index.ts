@@ -1,4 +1,4 @@
-import {Geo, User, Activity, Type} from 'entities'
+import { Geo, User, Activity, Type } from 'entities'
 import autoBind from 'auto-bind'
 
 class Api {
@@ -60,28 +60,14 @@ class Api {
 
 	getUser(id: number) {
 		return this.get(`/user/${id}`)
-			.then(user => ({
-				...user,
-				id: user.id,
-				email: user.email,
-				image_url: user.photo_url,
-				description: user.description,
-				activities_count: Math.round(Math.random() * 10),
-				types: user.types?.map((type: any) => ({
-					...type,
-					id: type.id,
-					image_url: type.image_url,
-					label: type.name,
-					color: type.color,
-				})),
-			} as User))
+			.then(convertUser)
 	}
 
 	getUserActivities(userId: number) {
 		return this.get(`/activities/${userId}`)
 			.then((activities: [Activity]) =>
 				activities.sort(
-					({start_time: a}: Activity, {start_time: b}: Activity) => {
+					({ start_time: a }: Activity, { start_time: b }: Activity) => {
 						if (a === b) {
 							return 0
 						}
@@ -120,39 +106,66 @@ class Api {
 		})
 	}
 
-	startTrackByType({userId, type}: { userId: number, type: Type }) {
+	startTrackByType({ userId, type }: { userId: number, type: Type }) {
 		return this.post('/startTrackType', {
 			userId,
 			typeId: type.id,
 		})
 	}
 
-	stopTracking({userId}: { userId: number }) {
+	stopTracking({ userId }: { userId: number }) {
 		return this.post('/stopTrack', {
 			userId,
 		})
 	}
 
-	followUser({userId, followingId}: { userId: number, followingId: number }) {
+	followUser({ userId, followingId }: { userId: number, followingId: number }) {
 		return this.post('/follow', {
 			userId, followingId,
 		})
 	}
 
-	copyActivity({userId, activityId}: { userId: number, activityId: number }) {
+	copyActivity({ userId, activityId }: { userId: number, activityId: number }) {
 		return this.post(`/copyActivity/${activityId}`, {
 			userId,
 		})
 	}
 
-	isTracking({userId}: { userId: number }) {
+	isTracking({ userId }: { userId: number }) {
 		return this.get(`/check/${userId}`)
-			.then(({da}) => da)
+			.then(({ da }) => da)
 	}
 
 	getNearby() {
 		return this.get('/getNearby')
 	}
+
+	findUsers(query: string) {
+		return this.get('/allUsers')
+			.then((users: Array<any>) => {
+				return users
+					.map(convertUser)
+					.filter(u => u.name.includes(query) || u.email.includes(query) || u.description.includes(query))
+			})
+	}
+
 }
+
+const convertUser = (user: any) => ({
+	...user,
+	id: user.id,
+	email: user.email,
+	image_url: user.photo_url,
+	description: user.description,
+	activities_count: Math.round(Math.random() * 10),
+	types: user.types?.map((type: any) => ({
+		...type,
+		id: type.id,
+		image_url: type.image_url,
+		label: type.name,
+		color: type.color,
+	})),
+} as User)
+
 
 export default new Api()

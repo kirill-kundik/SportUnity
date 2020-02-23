@@ -1,12 +1,33 @@
-import React, {useCallback, useState} from 'react'
-import {View} from 'react-native'
-import {Container, SubmitButton, SubmitText, TextInput} from './Search.styles'
+import React, { useCallback, useState } from 'react'
 
-export default function SearchTab() {
+import { User } from 'entities'
+import { useApi } from 'hooks'
+import Api from 'api'
+
+import UserCard from 'components/UserCard'
+import {
+	Container,
+	SubmitButton,
+	SubmitText,
+	TextInput,
+	ContentBlock,
+} from './Search.styles'
+
+export default function SearchTab(
+	{ navigation }: { navigation: any },
+) {
+	const [foundUsers, usersLoading, usersError, findUsers] = useApi({
+		apiMethod: Api.findUsers,
+		initialValue: [],
+	})
+
 	const [enteredText, setEnteredText] = useState('')
 	const onSubmit = (text: string) => {
-
+		findUsers(text)
 	}
+
+	console.log({ foundUsers })
+
 	return <Container>
 		<TextInput
 			onChangeText={useCallback((text) => {
@@ -23,5 +44,22 @@ export default function SearchTab() {
 				Submit
 			</SubmitText>
 		</SubmitButton>
+		{
+			foundUsers
+				.map((user: User) => (
+					<ContentBlock
+						onPress={() => {
+							navigation.navigate('UserDetails', {
+								userId: user.id,
+							})
+						}}
+					>
+						<UserCard
+							key={user.id}
+							user={user}
+						/>
+					</ContentBlock>
+				))
+		}
 	</Container>
 }
