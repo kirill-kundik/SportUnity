@@ -10,6 +10,7 @@ import ProfileTab from 'containers/ProfileTab'
 import ActivitiesTab from 'containers/ActivitiesTab'
 import ActivityDetailsTab from 'containers/ActivityDetailsTab'
 import {createStackNavigator} from 'react-navigation-stack'
+import UserTab from 'containers/UserTab'
 
 export default createStackNavigator(
 	{
@@ -50,6 +51,7 @@ export default createStackNavigator(
 			},
 		),
 		ActivityDetails: ActivityDetailsTab,
+		UserDetails: UserTab,
 	}
 )
 // //
@@ -57,7 +59,7 @@ export default createStackNavigator(
 // // 	return (
 // // 		<ActivitiesStack.Navigator>
 // // 			<ActivitiesStack.Screen name="tab" component={ActivitiesTab} />
-// // 			<ActivitiesStack.Screen name="details" component={ActivityDetailsTab} />
+// // 			<ActivitiesStack.Screen name="details" component={UserTab} />
 // // 		</ActivitiesStack.Navigator>
 // // 	)
 // // }

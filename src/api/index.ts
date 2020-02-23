@@ -114,22 +114,28 @@ class Api {
 				} as Activity))
 	}
 
-	startTrackByType({ userId, type }: { userId: number, type: Type }) {
+	getFeed(userId: number) {
+		return this.post('/feed', {
+			userId: userId,
+		})
+	}
+
+	startTrackByType({userId, type}: { userId: number, type: Type }) {
 		return this.post('/startTrackType', {
 			userId,
 			typeId: type.id,
 		})
 	}
 
-	stopTracking({ userId }: { userId: number }) {
+	stopTracking({userId}: { userId: number }) {
 		return this.post('/stopTrack', {
 			userId,
 		})
 	}
 
-	isTracking({ userId }: { userId: number }) {
+	isTracking({userId}: { userId: number }) {
 		return this.get(`/check/${userId}`)
-			.then(({ da }) => da)
+			.then(({da}) => da)
 	}
 
 	getNearby() {
