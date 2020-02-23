@@ -39,7 +39,6 @@ export default function SearchTab(
 		>
 			<SubmitText>
 				Submit
-				{JSON.stringify(foundUsers)}
 			</SubmitText>
 		</SubmitButton>
 		{
