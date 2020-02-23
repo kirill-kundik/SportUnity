@@ -1,4 +1,4 @@
-import { Geo, User } from 'entities'
+import {Geo, User, Activity} from 'entities'
 import autoBind from 'auto-bind'
 
 class Api {
@@ -62,6 +62,43 @@ class Api {
 					color: type.color,
 				})),
 			} as User))
+	}
+
+	getUserActivities(userId: number) {
+		return this.get(`/activities/${userId}`)
+			.then((activities: [Activity]) =>
+				activities.sort(
+					({start_time: a}: Activity, {start_time: b}: Activity) => {
+						if (a === b) {
+							return 0
+						}
+						if (a == null) {
+							return -1
+						}
+						if (b == null) {
+							return 1
+						}
+						return new Date(b).getTime() - new Date(a).getTime()
+					}))
+			.then(activities => activities.map((activity: any) => ({
+				...activity,
+				type: {
+					...activity.type,
+					label: activity.type.name,
+				},
+			} as Activity)))
+	}
+
+	getActivity(activityId: number) {
+		return this.get(`/activity/${activityId}`)
+			.then((activity: any) =>
+				({
+					...activity,
+					type: {
+						...activity.type,
+						label: activity.type?.name,
+					},
+				} as Activity))
 	}
 }
 
