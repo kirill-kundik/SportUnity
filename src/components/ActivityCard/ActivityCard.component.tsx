@@ -26,7 +26,7 @@ import {Activity, ActivityStatus} from 'entities'
 
 interface ActivityCardProps {
 	activity: Activity,
-	isInFeed?: boolean
+	onClick?: () => void
 }
 
 const timeFormat = {
@@ -41,7 +41,7 @@ const dateFormat = {
 export default function ActivityCard(
 	{
 		activity,
-		isInFeed,
+		onClick,
 		...rest
 	}: ActivityCardProps
 ) {
@@ -98,8 +98,9 @@ export default function ActivityCard(
 						<StatusInfo>{activity.status}</StatusInfo>
 					</Status>
 					{
-						isInFeed &&
-            <SaveButton color={activity.type.color}>
+						onClick &&
+            <SaveButton color={activity.type.color}
+                        onPress={onClick}>
               <SaveButtonText>Save</SaveButtonText>
             </SaveButton>
 					}
