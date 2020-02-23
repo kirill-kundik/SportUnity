@@ -1,10 +1,10 @@
-import { Geo } from 'entities'
+import { Geo, User } from 'entities'
 import autoBind from 'auto-bind'
 
 class Api {
 	baseUrl: string
 
-	constructor(baseUrl: string = 'http://192.168.33.209:8088') {
+	constructor(baseUrl: string = 'https://int20h.lknmessenger.co') {
 		this.baseUrl = baseUrl
 		autoBind(this)
 	}
@@ -48,9 +48,20 @@ class Api {
 	getUser(id: number) {
 		return this.get(`/user/${id}`)
 			.then(user => ({
-				activities_count: Math.round(Math.random() * 10),
 				...user,
-			}))
+				id: user.id,
+				email: user.email,
+				image_url: user.photo_url,
+				description: user.description,
+				activities_count: Math.round(Math.random() * 10),
+				types: user.types?.map((type: any) => ({
+					...type,
+					id: type.id,
+					image_url: type.image_url,
+					label: type.name,
+					color: type.color,
+				})),
+			} as User))
 	}
 }
 

@@ -6,7 +6,8 @@ export interface Geo {
 export interface Type {
 	id: number,
 	label: string,
-	image_url: string
+	image_url: string,
+	color: string,
 }
 
 export interface User {
