@@ -20,7 +20,7 @@ export default function useBackgroundTracker(
 			desiredAccuracy: BackgroundGeolocation.HIGH_ACCURACY,
 			locationProvider: BackgroundGeolocation.RAW_PROVIDER,
 			stationaryRadius: 1,
-			distanceFilter: 20,
+			distanceFilter: 4,
 			debug: true,
 
 			stopOnTerminate: true,

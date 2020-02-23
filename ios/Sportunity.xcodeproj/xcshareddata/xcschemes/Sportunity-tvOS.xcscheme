@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "Int20Music-tvOS.app"
-               BlueprintName = "Int20Music-tvOS"
-               ReferencedContainer = "container:Int20Music.xcodeproj">
+               BuildableName = "Sportunity-tvOS.app"
+               BlueprintName = "Sportunity-tvOS"
+               ReferencedContainer = "container:Sportunity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "Int20Music-tvOSTests.xctest"
-               BlueprintName = "Int20Music-tvOSTests"
-               ReferencedContainer = "container:Int20Music.xcodeproj">
+               BuildableName = "Sportunity-tvOSTests.xctest"
+               BlueprintName = "Sportunity-tvOSTests"
+               ReferencedContainer = "container:Sportunity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "Int20Music-tvOSTests.xctest"
-               BlueprintName = "Int20Music-tvOSTests"
-               ReferencedContainer = "container:Int20Music.xcodeproj">
+               BuildableName = "Sportunity-tvOSTests.xctest"
+               BlueprintName = "Sportunity-tvOSTests"
+               ReferencedContainer = "container:Sportunity.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "Int20Music-tvOS.app"
-            BlueprintName = "Int20Music-tvOS"
-            ReferencedContainer = "container:Int20Music.xcodeproj">
+            BuildableName = "Sportunity-tvOS.app"
+            BlueprintName = "Sportunity-tvOS"
+            ReferencedContainer = "container:Sportunity.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "Int20Music-tvOS.app"
-            BlueprintName = "Int20Music-tvOS"
-            ReferencedContainer = "container:Int20Music.xcodeproj">
+            BuildableName = "Sportunity-tvOS.app"
+            BlueprintName = "Sportunity-tvOS"
+            ReferencedContainer = "container:Sportunity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "Int20Music-tvOS.app"
-            BlueprintName = "Int20Music-tvOS"
-            ReferencedContainer = "container:Int20Music.xcodeproj">
+            BuildableName = "Sportunity-tvOS.app"
+            BlueprintName = "Sportunity-tvOS"
+            ReferencedContainer = "container:Sportunity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

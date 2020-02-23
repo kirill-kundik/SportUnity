@@ -19,7 +19,7 @@
   [GMSServices provideAPIKey:@"AIzaSyDU0HfNjQB278jL6kLqdIn2V0vSDPhf5IM"];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                   moduleName:@"Int20Music"
+                                                   moduleName:@"Sportunity"
                                             initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];

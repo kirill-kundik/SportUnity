@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "Sportunity.app"
-               BlueprintName = "Int20Music"
-               ReferencedContainer = "container:Int20Music.xcodeproj">
+               BlueprintName = "Sportunity"
+               ReferencedContainer = "container:Sportunity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "Int20MusicTests.xctest"
-               BlueprintName = "Int20MusicTests"
-               ReferencedContainer = "container:Int20Music.xcodeproj">
+               BuildableName = "SportunityTests.xctest"
+               BlueprintName = "SportunityTests"
+               ReferencedContainer = "container:Sportunity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -60,8 +60,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Sportunity.app"
-            BlueprintName = "Int20Music"
-            ReferencedContainer = "container:Int20Music.xcodeproj">
+            BlueprintName = "Sportunity"
+            ReferencedContainer = "container:Sportunity.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -70,9 +70,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "Int20MusicTests.xctest"
-               BlueprintName = "Int20MusicTests"
-               ReferencedContainer = "container:Int20Music.xcodeproj">
+               BuildableName = "SportunityTests.xctest"
+               BlueprintName = "SportunityTests"
+               ReferencedContainer = "container:Sportunity.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -93,8 +93,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Sportunity.app"
-            BlueprintName = "Int20Music"
-            ReferencedContainer = "container:Int20Music.xcodeproj">
+            BlueprintName = "Sportunity"
+            ReferencedContainer = "container:Sportunity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -110,8 +110,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "Sportunity.app"
-            BlueprintName = "Int20Music"
-            ReferencedContainer = "container:Int20Music.xcodeproj">
+            BlueprintName = "Sportunity"
+            ReferencedContainer = "container:Sportunity.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
