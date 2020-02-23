@@ -91,11 +91,19 @@ export default function MapTab() {
 	}, [isTracking, startBackgroundTracking, stopBackgroundTracking])
 
 	useEffect(() => {
-		const intervalId = setInterval(() => {
-			getNearby({})
-		}, 3000)
-		return () => clearInterval(intervalId)
+		function recursiveGet() {
+			return getNearby({})
+				.then(() =>
+					new Promise(
+						(resolve) => setTimeout(resolve, 8000),
+					),
+				)
+				.then(recursiveGet)
+		}
+
+		return recursiveGet()
 	}, [getNearby])
+
 
 	useEffect(() => {
 		BackgroundGeolocation.getCurrentLocation(
