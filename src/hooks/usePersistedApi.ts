@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { usePersistedState } from '.'
+import usePersistedState from './usePersistedState'
 
 import { default as useApi, UseApiProps, UseApiReturn } from './useApi'
 
