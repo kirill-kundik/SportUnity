@@ -1,4 +1,4 @@
-import { Geo, User } from 'entities'
+import { Geo, User, Type } from 'entities'
 import autoBind from 'auto-bind'
 
 class Api {
@@ -19,7 +19,15 @@ class Api {
 		})
 			.then(res => {
 				if (res.status.toString().startsWith('2')) {
-					return res.json()
+					return res
+						.text()
+						.then(t => {
+							try {
+								return JSON.parse(t)
+							} catch {
+								return t
+							}
+						})
 				}
 
 				return res
@@ -43,6 +51,11 @@ class Api {
 
 	getTypeList() {
 		return this.get('/getTypeList')
+			.then(types => types
+				.map((type: any) => ({
+					...type,
+					label: type.name,
+				} as Type)))
 	}
 
 	getUser(id: number) {
@@ -63,6 +76,29 @@ class Api {
 				})),
 			} as User))
 	}
+
+	startTrackByType({ userId, type }: { userId: number, type: Type }) {
+		return this.post('/startTrackType', {
+			userId,
+			typeId: type.id,
+		})
+	}
+
+	stopTracking({ userId }: { userId: number }) {
+		return this.post('/stopTrack', {
+			userId,
+		})
+	}
+
+	isTracking({ userId }: { userId: number }) {
+		return this.get(`/check/${userId}`)
+			.then(({ da }) => da)
+	}
+
+	getNearby() {
+		return this.get('/getNearby')
+	}
+
 }
 
 export default new Api()
