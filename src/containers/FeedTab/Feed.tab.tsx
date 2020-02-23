@@ -9,6 +9,7 @@ import constants from 'constants'
 import {Activity, User} from 'entities'
 import FeedFollowCard from "components/FeedFollowCard";
 import FeedActivityCard from "../../components/FeedActivityCard";
+import uuidv4 from 'uuid/v4'
 
 interface IFeedItem {
 	timestamp: string,
@@ -50,15 +51,16 @@ export default function FeedTab(props: any) {
 			/>
 		}>
 		{
-			feed.map((feedItem: IFeedItem, index: number) => {
+			feed.map((feedItem: IFeedItem) => {
 				if (feedItem.type === 'following')
 					return <FeedFollowCard
-						key={index}
+						key={uuidv4()}
 						follower={feedItem.follower}
 						following={feedItem.started_following}
 						timestamp={feedItem.timestamp}
 						onUserClick={navigateToUser} />
 				return <FeedActivityCard
+					key={uuidv4()}
 					activity={feedItem.activity}
 					user={feedItem.user}
 					timestamp={feedItem.timestamp}
