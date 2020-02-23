@@ -141,23 +141,29 @@ class Api {
 	}
 
 	findUsers(query: string) {
+		const searchQuery = query.toLowerCase()
+
 		return this.get('/allUsers')
 			.then((users: Array<any>) => {
 				return users
 					.map(convertUser)
-					.filter(u => u.name.includes(query) || u.email.includes(query) || u.description.includes(query))
+					.filter(u =>
+						u.name.toLowerCase().includes(searchQuery) ||
+						u.email.toLowerCase().includes(searchQuery) ||
+						u.description.toLowerCase().includes(searchQuery),
+					)
 			})
 	}
 
 }
 
 const convertUser = (user: any) => ({
-	activities_count: Math.round(Math.random() * 10),
-	...user,
 	id: user.id,
 	email: user.email,
 	image_url: user.photo_url,
 	description: user.description,
+	activities_count: 0,
+	...user,
 	types: user.types?.map((type: any) => ({
 		...type,
 		id: type.id,

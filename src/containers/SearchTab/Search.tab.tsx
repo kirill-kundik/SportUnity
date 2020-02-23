@@ -26,7 +26,9 @@ export default function SearchTab(
 		findUsers(text)
 	}
 
-	return <Container>
+	return <Container
+		keyboardShouldPersistTaps={'handled'}
+	>
 		<TextInput
 			onChangeText={useCallback((text) => {
 				setEnteredText(text)
