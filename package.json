@@ -44,7 +44,8 @@
     "redux-persist": "^6.0.0",
     "rn-deezer-sdk": "^1.0.18",
     "styled-components": "^5.0.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "uuid": "^3.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",

@@ -10,9 +10,10 @@ import {
 } from './FeedActivityCard.styles'
 import {Activity, User} from 'entities'
 import ActivityCard from "../ActivityCard";
-import {useActionApi} from "../../hooks";
+import {useActionApi, usePersistedState} from "../../hooks";
 import Api from "../../api";
 import {Alert} from "react-native";
+import constants from "../../constants";
 
 interface ActivityCardProps {
 	activity: Activity,
@@ -44,6 +45,10 @@ export default function FeedActivityCard(
 			hour12: false,
 		})
 
+	const [myUserId, seMyUserId] = usePersistedState({
+		entityName: constants.userId,
+	})
+
 	const [copyActivityLoading, copyActivityError, copyActivity] = useActionApi({
 		apiMethod: Api.copyActivity,
 		onSuccess: () => {
@@ -68,7 +73,7 @@ export default function FeedActivityCard(
 			<ActivityCard
 				activity={activity}
 				onBtnClick={() => {
-					copyActivity({userId: user.id, activityId: activity.id})
+					copyActivity({userId: myUserId, activityId: activity.id})
 				}}
 				btnText={'Add to my activities'}
 			/>
