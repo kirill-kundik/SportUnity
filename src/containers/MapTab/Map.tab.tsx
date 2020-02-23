@@ -1,7 +1,6 @@
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation'
 import { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps'
 import React, { useCallback, useEffect, useState } from 'react'
-import { last } from 'lodash'
 
 import { usePersistedApi, useActionApi, usePersistedState, useBackgroundTracker, useApi } from 'hooks'
 import constants from 'constants'
@@ -94,7 +93,7 @@ export default function MapTab() {
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			getNearby({})
-		}, 5000)
+		}, 3000)
 		return () => clearInterval(intervalId)
 	}, [getNearby])
 
@@ -131,13 +130,14 @@ export default function MapTab() {
 									key={userActivity.user_id}
 									coordinates={userActivity.locations.map(mapCoordinate).filter(a => !!a)}
 									strokeColor={userActivity.color}
+									strokeWidth={6}
 								/>
 							))
 					}
 					{
 						nearby
 							.map((userActivity: RecentUserActivity) => {
-								const lastLocation = last(userActivity.locations)
+								const lastLocation = userActivity.locations[0]
 								const coordinate = mapCoordinate(lastLocation as any)
 
 								return (
@@ -145,6 +145,7 @@ export default function MapTab() {
 										key={userActivity.user_id}
 										coordinate={mapCoordinate(lastLocation as any)}
 										title={`User ${userActivity.user_id}`}
+										anchor={{ x: 0.5, y: 0.5 }}
 									>
 										<TypeMarkerImage
 											source={{ uri: userActivity.image_url }}
