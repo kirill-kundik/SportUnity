@@ -15,10 +15,10 @@ export const Wrapper = styled(View)<WrapperProps>`
 	box-shadow: 0 5px 10px rgba(163,163,163,0.5);
 	background: white;
 	padding: 15px 0 12px;
-	margin-bottom: 15px;
 	border-bottom-width: 3px;
 	border-bottom-color: ${({underline}) => underline};
 	border-radius: 10px;
+	margin-bottom: 15px;
 `
 
 export const LeftColumn = styled.View`
