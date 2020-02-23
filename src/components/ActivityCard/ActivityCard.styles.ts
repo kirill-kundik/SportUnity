@@ -39,6 +39,7 @@ export const InfoColumn = styled.View`
 export const StartDate = styled.View`
 	padding: 0 0 10px;
 	align-items: center;
+		text-align: center;
 	border-color: rgba(71,71,71,0.3);
 	border-bottom-width: 1px;
 `
@@ -59,6 +60,8 @@ export const StartDateDate = styled(Text)`
 
 export const EndDate = styled.View`
 	padding: 10px 0 0;
+	align-items: center;
+	text-align: center;
 `
 
 export const EndDateLabel = styled(Text)`
@@ -74,7 +77,6 @@ export const EndDateInfo = styled(Text)`
 export const Name = styled(Text)`
 	font-size: 22px;
 	font-weight: 600;
-	text-align: center;
 `
 
 export const Description = styled(Text)`
@@ -120,6 +122,7 @@ export const SaveButtonText = styled(Text)`
 export const TypeBadge = styled.View`
 	padding: 10px 0;
 	align-items: center;
+	text-align: center;
 	border-color: rgba(71,71,71,0.3);
 	border-bottom-width: 1px;
 `
