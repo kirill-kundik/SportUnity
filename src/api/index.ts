@@ -1,4 +1,4 @@
-import { Geo, User, Type } from 'entities'
+import {Geo, User, Activity, Type} from 'entities'
 import autoBind from 'auto-bind'
 
 class Api {
@@ -77,6 +77,43 @@ class Api {
 			} as User))
 	}
 
+	getUserActivities(userId: number) {
+		return this.get(`/activities/${userId}`)
+			.then((activities: [Activity]) =>
+				activities.sort(
+					({start_time: a}: Activity, {start_time: b}: Activity) => {
+						if (a === b) {
+							return 0
+						}
+						if (a == null) {
+							return -1
+						}
+						if (b == null) {
+							return 1
+						}
+						return new Date(b).getTime() - new Date(a).getTime()
+					}))
+			.then(activities => activities.map((activity: any) => ({
+				...activity,
+				type: {
+					...activity.type,
+					label: activity.type.name,
+				},
+			} as Activity)))
+	}
+
+	getActivity(activityId: number) {
+		return this.get(`/activity/${activityId}`)
+			.then((activity: any) =>
+				({
+					...activity,
+					type: {
+						...activity.type,
+						label: activity.type?.name,
+					},
+				} as Activity))
+	}
+
 	startTrackByType({ userId, type }: { userId: number, type: Type }) {
 		return this.post('/startTrackType', {
 			userId,
@@ -98,7 +135,6 @@ class Api {
 	getNearby() {
 		return this.get('/getNearby')
 	}
-
 }
 
 export default new Api()

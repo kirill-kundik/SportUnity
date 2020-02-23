@@ -1,34 +1,40 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import ActivityCard from 'components/ActivityCard'
-import { Container } from './Activities.styles'
-import { RefreshControl, ScrollView } from 'react-native'
-import { useApi } from 'hooks'
+import {Container} from './Activities.styles'
+import {RefreshControl} from 'react-native'
+import {usePersistedState, usePersistedApi} from 'hooks'
 import Api from 'api'
-import { activities } from './'
+import constants from 'constants'
+import {Activity} from 'entities'
 
 export default function ActivitiesTab() {
-	const [data, loading, error, fetchData] = useApi({
-		apiMethod: async () => [],
-		initialValue: activities,
+	const [selectedUserId, setSelectedUserId] = usePersistedState({
+		entityName: constants.userId,
 	})
 
-	return <ScrollView
+	const [activities, loading, error, fetchActivities] = usePersistedApi({
+		entityName: constants.activities,
+		apiMethod: Api.getUserActivities,
+		initialValue: [],
+	})
+
+	useEffect(() => {
+		fetchActivities(selectedUserId)
+	}, [fetchActivities, selectedUserId])
+
+	return <Container
 		refreshControl={
 			<RefreshControl
 				refreshing={loading}
-				onRefresh={() => {
-					fetchData({})
-				}}
+				onRefresh={() => fetchActivities(selectedUserId)}
 			/>
 		}>
-		<Container>
-			{
-				data.map((a: any) =>
-					<ActivityCard
-						key={a.id}
-						activity={a}
-					/>)
-			}
-		</Container>
-	</ScrollView>
+		{
+			activities.map((a: Activity) =>
+				<ActivityCard
+					key={a.id}
+					activity={a}
+				/>)
+		}
+	</Container>
 }

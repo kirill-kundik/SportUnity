@@ -18,7 +18,7 @@ export const Wrapper = styled(View)<WrapperProps>`
 	border-bottom-width: 3px;
 	border-bottom-color: ${({underline}) => underline};
 	border-radius: 10px;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 `
 
 export const LeftColumn = styled.View`
@@ -104,7 +104,7 @@ export const StatusInfo = styled(Text)`
 
 export const SaveButton = styled.TouchableOpacity<SaveButtonProps>`
 	background: ${({color}) => color};
-	border-radius: 4px;
+	border-radius: 5px;
 	
 	align-items: center;
 	width: 100%;

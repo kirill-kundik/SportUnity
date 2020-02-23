@@ -1,41 +1,50 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
-import { RefreshControl, ScrollView } from 'react-native'
-import { Container } from './Feed.styles'
-import { useApi } from 'hooks'
+import {RefreshControl, ScrollView} from 'react-native'
+import {Container} from './Feed.styles'
+import {usePersistedApi, usePersistedState} from 'hooks'
 import Api from 'api'
 import ActivityCard from 'components/ActivityCard/ActivityCard.component'
-import { activities } from 'containers/ActivitiesTab'
+import constants from 'constants'
+import {Activity} from 'entities'
 
 export default function FeedTab(props: any) {
 
-	const [data, loading, error, fetchData] = useApi({
-		apiMethod: async () => [],
-		initialValue: activities,
+	const [selectedUserId, setSelectedUserId] = usePersistedState({
+		entityName: constants.userId,
 	})
 
-	return <ScrollView
+	const [feed, loading, error, fetchFeed] = usePersistedApi({
+		entityName: constants.feed,
+		apiMethod: Api.getUserActivities,
+		initialValue: [],
+	})
+
+	useEffect(() => {
+		fetchFeed(selectedUserId)
+	}, [fetchFeed, selectedUserId])
+
+	return <Container
 		refreshControl={
 			<RefreshControl
 				refreshing={loading}
-				onRefresh={() => {
-					fetchData({})
-				}}
+				onRefresh={() => fetchFeed(selectedUserId)}
 			/>
 		}>
-		<Container>
-			{
-				data.map(a =>
-					<ActivityCard
-						key={a.id}
-						activity={a}
-						onClick={() => {
-							props.navigation.navigate('ActivityDetails')
-						}}
-					/>)
-			}
-		</Container>
-	</ScrollView>
+		{
+			feed.map((a: Activity) =>
+				<ActivityCard
+					key={a.id}
+					activity={a}
+					onBtnClick={() => {
+						props.navigation.navigate('ActivityDetails', {
+							activityId: a.id,
+						})
+					}}
+					btnText={'More'}
+				/>)
+		}
+	</Container>
 
 
 }

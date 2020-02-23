@@ -23,15 +23,18 @@ import {
 } from './ActivityCard.styles'
 import {View} from 'react-native'
 import {Activity, ActivityStatus} from 'entities'
+import {colors} from 'themes'
 
 interface ActivityCardProps {
 	activity: Activity,
-	onClick?: () => void
+	onBtnClick?: () => void,
+	btnText?: string
 }
 
 const timeFormat = {
 	hour: '2-digit',
 	minute: '2-digit',
+	hour12: false,
 }
 const dateFormat = {
 	month: 'short',
@@ -41,7 +44,8 @@ const dateFormat = {
 export default function ActivityCard(
 	{
 		activity,
-		onClick,
+		onBtnClick,
+		btnText,
 		...rest
 	}: ActivityCardProps
 ) {
@@ -53,8 +57,6 @@ export default function ActivityCard(
 	}
 	const startTime = startDateObj.toLocaleString('default', timeFormat)
 	const startDate = startDateObj.toLocaleString('default', dateFormat)
-	// const startDateText =
-
 
 	let endTime
 	if (activity.status === ActivityStatus.FINISHED && activity.end_time) {
@@ -66,12 +68,12 @@ export default function ActivityCard(
 					minute: '2-digit',
 					month: 'short',
 					day: 'numeric',
+					hour12: false,
 				})
 	}
 
-
 	return (
-		<Wrapper underline={activity.type.color} {...rest}>
+		<Wrapper underline={activity.type?.color || colors.main} {...rest}>
 			<LeftColumn>
 				<StartDate>
 					<StartDateLabel>{startDateText}</StartDateLabel>
@@ -79,8 +81,8 @@ export default function ActivityCard(
 					<StartDateDate>{startDate}</StartDateDate>
 				</StartDate>
 				<TypeBadge>
-					<TypeBadgeIcon source={{uri: activity.type.image_url}} />
-					<TypeBadgeLabel>{activity.type.label}</TypeBadgeLabel>
+					<TypeBadgeIcon source={{uri: activity.type?.image_url}} />
+					<TypeBadgeLabel>{activity.type?.label}</TypeBadgeLabel>
 				</TypeBadge>
 				{endTime && <EndDate>
           <EndDateLabel>Ended at:</EndDateLabel>
@@ -98,10 +100,10 @@ export default function ActivityCard(
 						<StatusInfo>{activity.status}</StatusInfo>
 					</Status>
 					{
-						onClick &&
-            <SaveButton color={activity.type.color}
-                        onPress={onClick}>
-              <SaveButtonText>Save</SaveButtonText>
+						onBtnClick &&
+            <SaveButton color={activity.type?.color || colors.main}
+                        onPress={onBtnClick}>
+              <SaveButtonText>{btnText || 'View details'}</SaveButtonText>
             </SaveButton>
 					}
 				</View>
