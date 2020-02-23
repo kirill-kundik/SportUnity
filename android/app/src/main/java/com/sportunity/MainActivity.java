@@ -1,4 +1,4 @@
-package com.int20music;
+package com.sportunity;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "Int20Music";
+    return "Sportunity";
   }
 }

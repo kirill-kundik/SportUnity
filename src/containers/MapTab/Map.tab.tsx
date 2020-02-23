@@ -1,3 +1,4 @@
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation'
 import { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps'
 import React, { useCallback, useEffect, useState } from 'react'
 import { last } from 'lodash'
@@ -6,7 +7,7 @@ import { usePersistedApi, useActionApi, usePersistedState, useBackgroundTracker,
 import constants from 'constants'
 import Api from 'api'
 
-import { Geo, RecentUserActivity } from 'entities'
+import { Geo, RecentUserActivity, Type } from 'entities'
 import TypeIcon from 'components/TypeIcon'
 import Loading from 'components/Loading'
 import Popup from 'components/Popup'
@@ -25,7 +26,9 @@ import {
 
 export default function MapTab() {
 
-	const [selectedType, setSelectedType] = useState()
+	const [selectedType, setSelectedType] = useState<Type>()
+	const [initialLocation, setInitialLocation] = useState<Geo>()
+
 	const userId = usePersistedState({
 		entityName: constants.userId,
 		initialValue: 1,
@@ -95,14 +98,28 @@ export default function MapTab() {
 		return () => clearInterval(intervalId)
 	}, [getNearby])
 
+	useEffect(() => {
+		BackgroundGeolocation.getCurrentLocation(
+			(location) => {
+				if (!initialLocation) {
+					setInitialLocation({
+						lat: location.latitude,
+						lon: location.longitude,
+					})
+				}
+			},
+		)
+	}, [initialLocation, setInitialLocation])
+
 	return (
 		<>
 			<Container>
 				<StyledMapView
+					key={initialLocation as any}
 					provider={PROVIDER_GOOGLE}
 					initialRegion={{
-						latitude: 50,
-						longitude: 30,
+						latitude: initialLocation?.lat || 50,
+						longitude: initialLocation?.lon || 30,
 						latitudeDelta: 0.0922,
 						longitudeDelta: 0.0421,
 					}}
@@ -112,7 +129,7 @@ export default function MapTab() {
 							.map((userActivity: RecentUserActivity) => (
 								<Polyline
 									key={userActivity.user_id}
-									coordinates={userActivity.locations.map(mapCoordinate)}
+									coordinates={userActivity.locations.map(mapCoordinate).filter(a => !!a)}
 									strokeColor={userActivity.color}
 								/>
 							))
@@ -121,9 +138,10 @@ export default function MapTab() {
 						nearby
 							.map((userActivity: RecentUserActivity) => {
 								const lastLocation = last(userActivity.locations)
+								const coordinate = mapCoordinate(lastLocation as any)
 
 								return (
-									<Marker
+									!!coordinate && <Marker
 										key={userActivity.user_id}
 										coordinate={mapCoordinate(lastLocation as any)}
 										title={`User ${userActivity.user_id}`}
@@ -162,7 +180,7 @@ export default function MapTab() {
 								startTracking(
 									{
 										userId,
-										type: selectedType,
+										type: selectedType as Type,
 									},
 								)
 							} else {
@@ -188,8 +206,9 @@ export default function MapTab() {
 }
 
 function mapCoordinate(geo: Geo) {
-	return ({
-		latitude: +geo?.lat,
-		longitude: +geo?.lon,
-	})
+	return (geo?.lat && geo?.lon) ?
+		({
+			latitude: +geo?.lat,
+			longitude: +geo?.lon,
+		}) : null as any
 }

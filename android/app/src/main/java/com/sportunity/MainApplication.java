@@ -1,4 +1,4 @@
-package com.int20music;
+package com.sportunity;
 
 import android.app.Application;
 import android.content.Context;

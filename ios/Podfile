@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'Int20Music' do
-  # Pods for Int20Music
+target 'Sportunity' do
+  # Pods for Sportunity
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -34,7 +34,7 @@ target 'Int20Music' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'Int20MusicTests' do
+  target 'SportunityTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -48,10 +48,10 @@ target 'Int20Music' do
   use_native_modules!
 end
 
-target 'Int20Music-tvOS' do
-  # Pods for Int20Music-tvOS
+target 'Sportunity-tvOS' do
+  # Pods for Sportunity-tvOS
 
-  target 'Int20Music-tvOSTests' do
+  target 'Sportunity-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
