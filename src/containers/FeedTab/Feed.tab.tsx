@@ -1,18 +1,39 @@
 import React from 'react'
 
-import {TouchableOpacity} from 'react-native'
+import {RefreshControl, ScrollView} from 'react-native'
 import {Container} from './Feed.styles'
-import Text from 'components/Text'
+import {useApi} from 'utils'
+import Api from 'api'
+import ActivityCard from 'components/ActivityCard/ActivityCard.component'
+import {activities} from 'containers/ActivitiesTab'
 
 export default function FeedTab(props: any) {
 
-	return <Container>
-		<TouchableOpacity
-			onPress={() => {
-				props.navigation.navigate('ActivityDetails')
-			}}
-		>
-			<Text>Feed</Text>
-		</TouchableOpacity>
-	</Container>
+	const [data, loading, error, fetchData] = useApi({
+		apiMethod: Api.findLyrics,
+		initialValue: activities,
+	})
+
+	return <ScrollView
+		refreshControl={
+			<RefreshControl
+				refreshing={loading}
+				onRefresh={fetchData}
+			/>
+		}>
+		<Container>
+			{
+				data.map(a =>
+					<ActivityCard
+						key={a.id}
+						activity={a}
+						onClick={() => {
+							props.navigation.navigate('ActivityDetails')
+						}}
+					/>)
+			}
+		</Container>
+	</ScrollView>
+
+
 }
