@@ -10,6 +10,9 @@ import {
 } from './FeedActivityCard.styles'
 import {Activity, User} from 'entities'
 import ActivityCard from "../ActivityCard";
+import {useActionApi} from "../../hooks";
+import Api from "../../api";
+import {Alert} from "react-native";
 
 interface ActivityCardProps {
 	activity: Activity,
@@ -41,6 +44,17 @@ export default function FeedActivityCard(
 			hour12: false,
 		})
 
+	const [copyActivityLoading, copyActivityError, copyActivity] = useActionApi({
+		apiMethod: Api.copyActivity,
+		onSuccess: () => {
+			Alert.alert('Activity added (forked) to your account!')
+		},
+		onError: (err) => {
+			console.log(err)
+			Alert.alert('Something went wrong.')
+		},
+	})
+
 	return (
 		<Wrapper {...rest} >
 			<Row>
@@ -54,6 +68,7 @@ export default function FeedActivityCard(
 			<ActivityCard
 				activity={activity}
 				onBtnClick={() => {
+					copyActivity({userId: user.id, activityId: activity.id})
 				}}
 				btnText={'Add to my activities'}
 			/>

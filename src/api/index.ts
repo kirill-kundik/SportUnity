@@ -139,6 +139,12 @@ class Api {
 		})
 	}
 
+	copyActivity({userId, activityId}: { userId: number, activityId: number }) {
+		return this.post(`/copyActivity/${activityId}`, {
+			userId,
+		})
+	}
+
 	isTracking({userId}: { userId: number }) {
 		return this.get(`/check/${userId}`)
 			.then(({da}) => da)
