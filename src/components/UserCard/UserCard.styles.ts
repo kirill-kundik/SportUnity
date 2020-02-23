@@ -6,6 +6,7 @@ import Text from 'components/Text'
 export const Container = styled.View`
 	display: flex;
 	flex-direction: column;
+	padding: 10px;
 `
 
 export const SimpleText = styled(Text)`
@@ -13,11 +14,12 @@ export const SimpleText = styled(Text)`
 `
 
 export const UserImage = styled.Image.attrs({
-	resizeMode: 'contain',
+	resizeMode: 'cover',
 })`
 	width: 140px;
 	height: 140px;
-	margin: 10px;
+	border-radius: 10px;
+	margin-right: 20px
 `
 
 export const UserFieldsColumn = styled.View`
@@ -29,7 +31,7 @@ export const UserFieldsColumn = styled.View`
 export const UserFieldRow = styled.View`
 	align-self: stretch;
 	
-	margin: 10px 20px;
+	padding: 10px 5px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;	
@@ -42,8 +44,8 @@ export const UserFieldText = styled(SimpleText)`
 `
 
 export const UserDescriptionText = styled(UserFieldText)`
+	margin-left: 0;
 	font-size: 14px;
-	flex: 1;
 	text-align: justify;
 `
 
