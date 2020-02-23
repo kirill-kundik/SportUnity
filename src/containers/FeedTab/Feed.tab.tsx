@@ -41,6 +41,7 @@ export default function FeedTab(props: any) {
 							activityId: a.id,
 						})
 					}}
+					btnText={'More'}
 				/>)
 		}
 	</Container>

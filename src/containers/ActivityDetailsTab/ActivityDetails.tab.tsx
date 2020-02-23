@@ -5,7 +5,8 @@ import {useApi, usePersistedApi, usePersistedState} from 'hooks'
 import constants from 'constants'
 import Api from 'api'
 import UserCard from 'components/UserCard'
-import {Container, UserBlock, SubscribeButton, SubscribeButtonText} from './ActivityDetails.styles'
+import {Container, SubscribeButton, SubscribeButtonText, UserBlock, UserText,} from './ActivityDetails.styles'
+import {ActivityStatus} from "../../entities";
 
 export default function ActivityDetailsTab(props: any) {
 	const selectedActivityId = props.navigation.state.params.activityId
@@ -34,20 +35,30 @@ export default function ActivityDetailsTab(props: any) {
 	}, [fetchActivity, selectedActivityId])
 
 	return <Container>
-		{activity ? <ActivityCard activity={activity} /> : <Loading />}
-		{userLoading ?
-			<Loading /> :
-			<UserBlock>
-				<UserCard
-					user={user}
-				/>
-				<SubscribeButton onPress={() => {
-				}}>
-					<SubscribeButtonText>
-						Subscribe
-					</SubscribeButtonText>
-				</SubscribeButton>
-			</UserBlock>
+		{activity && user ?
+			<>
+				{activity.status === ActivityStatus.NOT_STARTED ?
+					<ActivityCard
+						activity={activity}
+						onBtnClick={() => {
+						}}
+						btnText={'Add to my activities'} />
+					: <ActivityCard activity={activity} />
+				}
+				<UserBlock>
+					<UserText>Activity Master:</UserText>
+					<UserCard
+						user={user}
+					/>
+					<SubscribeButton onPress={() => {
+					}}>
+						<SubscribeButtonText>
+							Subscribe
+						</SubscribeButtonText>
+					</SubscribeButton>
+				</UserBlock>
+			</>
+			: <Loading />
 		}
 	</Container>
 }

@@ -28,3 +28,10 @@ export const UserBlock = styled.View`
 	border-radius: 10px;
 	box-shadow: 0 5px 10px rgba(163,163,163,0.5);
 `
+
+export const UserText = styled(Text)`
+	padding: 15px 15px 0;
+	font-size: 25px;
+	font-weight: 600;
+	text-align: center;
+`
