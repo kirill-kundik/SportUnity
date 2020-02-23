@@ -8,6 +8,7 @@ import ActivityCard from 'components/ActivityCard/ActivityCard.component'
 import constants from 'constants'
 import {Activity, User} from 'entities'
 import FeedFollowCard from "components/FeedFollowCard";
+import FeedActivityCard from "../../components/FeedActivityCard";
 
 interface IFeedItem {
 	timestamp: string,
@@ -35,6 +36,12 @@ export default function FeedTab(props: any) {
 		fetchFeed(selectedUserId)
 	}, [fetchFeed, selectedUserId])
 
+	const navigateToUser = (userId: number) => {
+		props.navigation.navigate('UserDetails', {
+			userId: userId,
+		})
+	}
+
 	return <Container
 		refreshControl={
 			<RefreshControl
@@ -50,11 +57,14 @@ export default function FeedTab(props: any) {
 						follower={feedItem.follower}
 						following={feedItem.started_following}
 						timestamp={feedItem.timestamp}
-						onUserClick={(userId: number) => {
-							props.navigation.navigate('UserDetails', {
-								userId: userId,
-							})
-						}} />
+						onUserClick={navigateToUser} />
+				return <FeedActivityCard
+					activity={feedItem.activity}
+					user={feedItem.user}
+					timestamp={feedItem.timestamp}
+					status={feedItem.status}
+					onUserClick={navigateToUser}
+					onMoreClick={() => {}} />
 			})
 			// 	<ActivityCard
 			// 	key={a.id}

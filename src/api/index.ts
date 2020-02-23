@@ -133,6 +133,12 @@ class Api {
 		})
 	}
 
+	followUser({userId, followingId}: { userId: number, followingId: number }) {
+		return this.post('/follow', {
+			userId, followingId,
+		})
+	}
+
 	isTracking({userId}: { userId: number }) {
 		return this.get(`/check/${userId}`)
 			.then(({da}) => da)

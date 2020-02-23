@@ -26,7 +26,6 @@ export default function FeedFollowCard(
 		...rest
 	}: ActivityCardProps
 ) {
-	console.log(rest)
 	const timestampString = new Date(timestamp).toLocaleString(
 		'default',
 		{
