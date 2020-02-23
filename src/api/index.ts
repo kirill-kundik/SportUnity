@@ -152,12 +152,12 @@ class Api {
 }
 
 const convertUser = (user: any) => ({
+	activities_count: Math.round(Math.random() * 10),
 	...user,
 	id: user.id,
 	email: user.email,
 	image_url: user.photo_url,
 	description: user.description,
-	activities_count: Math.round(Math.random() * 10),
 	types: user.types?.map((type: any) => ({
 		...type,
 		id: type.id,

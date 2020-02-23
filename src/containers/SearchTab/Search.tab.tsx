@@ -26,8 +26,6 @@ export default function SearchTab(
 		findUsers(text)
 	}
 
-	console.log({ foundUsers })
-
 	return <Container>
 		<TextInput
 			onChangeText={useCallback((text) => {
@@ -39,15 +37,16 @@ export default function SearchTab(
 				onSubmit(enteredText)
 			}, [enteredText])}
 		>
-			<SubmitText
-			>
+			<SubmitText>
 				Submit
+				{JSON.stringify(foundUsers)}
 			</SubmitText>
 		</SubmitButton>
 		{
 			foundUsers
 				.map((user: User) => (
 					<ContentBlock
+						key={user.id}
 						onPress={() => {
 							navigation.navigate('UserDetails', {
 								userId: user.id,
@@ -55,7 +54,6 @@ export default function SearchTab(
 						}}
 					>
 						<UserCard
-							key={user.id}
 							user={user}
 						/>
 					</ContentBlock>
