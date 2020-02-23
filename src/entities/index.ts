@@ -27,16 +27,10 @@ export interface RecentUserActivity {
 	locations: Array<Geo>
 }
 
-export interface ActivityType {
-	color: string,
-	label: string,
-	image_url: string
-}
-
 export enum ActivityStatus {
-	NOT_STARTED = 'Not started',
-	ACTIVE = 'Active',
-	FINISHED = 'Finished',
+	NOT_STARTED = 'NOT_STARTED',
+	ACTIVE = 'ACTIVE',
+	FINISHED = 'FINISHED',
 }
 
 export interface Activity {
@@ -47,5 +41,5 @@ export interface Activity {
 	end_time?: string,
 	description: string,
 	status: ActivityStatus,
-	type: ActivityType
+	type: Type
 }
