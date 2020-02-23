@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import { useFollowAnimation } from 'utils'
+import { useFollowAnimation } from 'hooks'
 import {
 	Container,
 } from './Popup.styles'
@@ -25,16 +25,10 @@ export default function Popup(
 
 	return (
 		<Container
-			pointerEvents={opened ? 'box-none' : 'none'}
+			pointerEvents={opened ? 'auto' : 'none'}
 			style={[
 				{
 					opacity: current,
-					transform: [{
-						scale: current.interpolate({
-							inputRange: [0, 1],
-							outputRange: [0.8, 1],
-						}),
-					}],
 				},
 				props.style,
 			]}
