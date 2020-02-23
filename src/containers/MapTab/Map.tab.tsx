@@ -1,3 +1,4 @@
+import BackgroundGeolocation from '@mauron85/react-native-background-geolocation'
 import { Marker, PROVIDER_GOOGLE, Polyline } from 'react-native-maps'
 import React, { useCallback, useEffect, useState } from 'react'
 import { last } from 'lodash'
@@ -26,6 +27,8 @@ import {
 export default function MapTab() {
 
 	const [selectedType, setSelectedType] = useState<Type>()
+	const [initialLocation, setInitialLocation] = useState<Geo>()
+
 	const userId = usePersistedState({
 		entityName: constants.userId,
 		initialValue: 1,
@@ -95,14 +98,28 @@ export default function MapTab() {
 		return () => clearInterval(intervalId)
 	}, [getNearby])
 
+	useEffect(() => {
+		BackgroundGeolocation.getCurrentLocation(
+			(location) => {
+				if (!initialLocation) {
+					setInitialLocation({
+						lat: location.latitude,
+						lon: location.longitude,
+					})
+				}
+			},
+		)
+	}, [initialLocation, setInitialLocation])
+
 	return (
 		<>
 			<Container>
 				<StyledMapView
+					key={initialLocation as any}
 					provider={PROVIDER_GOOGLE}
 					initialRegion={{
-						latitude: 50,
-						longitude: 30,
+						latitude: initialLocation?.lat || 50,
+						longitude: initialLocation?.lon || 30,
 						latitudeDelta: 0.0922,
 						longitudeDelta: 0.0421,
 					}}
