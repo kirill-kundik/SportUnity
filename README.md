@@ -3,7 +3,7 @@ Powered by React Native & Flashback team *👽*
 
 This is this a mobile app repository.
 # We also wrote a backend part!
-It's available here: https://github.com/kirill-kundik/aio-int20h-backend
+It's available here: https://github.com/kirill-kundik/SportUnity-Backend
 
 Recommended prerequisites:
 - Mac OS.
